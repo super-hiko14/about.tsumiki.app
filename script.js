@@ -240,8 +240,20 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.14.5', date: '2026.05.21', type: 'minor', open: true,
+    summary: '小さいけど大きい変更(?)。',
+    items: [
+      { tag:'add',    text:'カレンダーからToDoを追加の際、終了日が選べるように' },
+      { tag:'change',    text:'初期画面の超刷新(初めてアクセスした際の画面)' },
+      { tag:'change',    text:'テキスト入力欄を刷新/全体変更/統一' },
+      { tag:'fix',    text:'おかしな日本語/英語の修正' },
+      { tag:'fix',    text:'ボタンと入力欄の高さが一致しないデザインのバグ修正' },
+      { tag:'remove',    text:'一時的なバグ対処として一部svgを削除' },
+    ],
+  },
+  {
     version: 'v1.14.1', date: '2026.05.10', type: 'minor', open: true,
-    summary: 'ロゴの追加。',
+    summary: '小さい変更。',
     items: [
       { tag:'add',    text:'ホームページ追加に伴う更新' },
       { tag:'fix',    text:'著作権表記のミスを修正' },
@@ -257,8 +269,8 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.13.0', date: '2026.04.30', type: 'minor', open: true,
-    summary: '',
+    version: 'v1.13.0', date: '2026.04.30', type: 'minor', open: false,
+    summary: '音楽自動再生調整とToDoを少し刷新。',
     items: [
       { tag:'change',    text:'音楽自動再生に調整を加えました(タップで自動再開の有効時間の設定項目の追加)' },
       { tag:'change',    text:'デザインの統一' },
@@ -267,7 +279,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.12.0', date: '2026.4.25', type: 'major', open: true,
+    version: 'v1.12.0', date: '2026.4.25', type: 'major', open: false,
     summary: 'favicon v2に変更したり、結構色々小さいですが変わりました。',
     items: [
       { tag:'change',    text:'favicon - v2に変更' },
