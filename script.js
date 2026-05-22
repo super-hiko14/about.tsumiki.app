@@ -240,6 +240,14 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.14.6', date: '2026.05.21', type: 'minor', open: true,
+    summary: 'ばばばぐ。',
+    items: [
+      { tag:'fix',    text:'スマホでのスタイルの修正' },
+      { tag:'fix',    text:'言語選択を初回時のみに変更' }
+    ],
+  },
+  {
     version: 'v1.14.5', date: '2026.05.21', type: 'minor', open: true,
     summary: '小さいけど大きい変更(?)。',
     items: [
