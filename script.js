@@ -240,6 +240,13 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.14.7', date: '2026.05.25', type: 'minor', open: true,
+    summary: 'ﾃﾞﾃﾞｰﾝ',
+    items: [
+      { tag:'fix',    text:'チュートリアルの質問のUIの改善' }
+    ],
+  },
+  {
     version: 'v1.14.6', date: '2026.05.21', type: 'minor', open: true,
     summary: 'ばばばぐ。',
     items: [
