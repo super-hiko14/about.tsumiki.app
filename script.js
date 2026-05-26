@@ -240,6 +240,16 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.15.0', date: '2026.05.26', type: 'minor', open: true,
+    summary: 'バグ日和。',
+    items: [
+      { tag:'add',    text:'selectをフォーカス時、borderが出るように' },
+      { tag:'fix',    text:'ドラックアンドドロップでの移動の表現を線から間の矢印にすることでずれを改善' },
+      { tag:'fix',    text:'ドラックアンドドロップを全体的に統一' },
+      { tag:'change',    text:'ToDoが中央揃えから左揃えに' }
+    ],
+  },
+  {
     version: 'v1.14.7', date: '2026.05.25', type: 'minor', open: true,
     summary: 'ﾃﾞﾃﾞｰﾝ',
     items: [
