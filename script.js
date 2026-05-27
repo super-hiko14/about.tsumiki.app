@@ -240,6 +240,13 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.15.2', date: '2026.05.28', type: 'minor', open: true,
+    summary: 'バグ',
+    items: [
+      { tag:'fix',    text:'音楽インポートに濁点半濁点があった場合それらにフォントが適用されない問題の修正' }
+    ],
+  },
+  {
     version: 'v1.15.1', date: '2026.05.27', type: 'minor', open: true,
     summary: '調整',
     items: [
