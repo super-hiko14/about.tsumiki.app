@@ -240,13 +240,26 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.15.1', date: '2026.05.27', type: 'minor', open: true,
+    summary: '調整',
+    items: [
+      { tag:'add',    text:'ToDoで期間を詳しく設定できるように' },
+      { tag:'fix',    text:'記録カードの下のバーの調整' },
+      { tag:'fix',    text:'ToDoの日付表記をコンパクトに' },
+      { tag:'change',    text:'カレンダーのデザイン一部変更' },
+      { tag:'change',    text:'矢印をもう少しわかりやすく' }
+    ],
+  },
+  {
     version: 'v1.15.0', date: '2026.05.26', type: 'minor', open: true,
     summary: 'バグ日和。',
     items: [
       { tag:'add',    text:'selectをフォーカス時、borderが出るように' },
       { tag:'fix',    text:'ドラックアンドドロップでの移動の表現を線から間の矢印にすることでずれを改善' },
       { tag:'fix',    text:'ドラックアンドドロップを全体的に統一' },
-      { tag:'change',    text:'ToDoが中央揃えから左揃えに' }
+      { tag:'fix',    text:'音楽の選択の多数のバグ修正' },
+      { tag:'change',    text:'ToDoが中央揃えから左揃えに' },
+      { tag:'remove',    text:'ToDoの進行度を削除' }
     ],
   },
   {
@@ -257,7 +270,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.14.6', date: '2026.05.21', type: 'minor', open: true,
+    version: 'v1.14.6', date: '2026.05.21', type: 'minor', open: false,
     summary: 'ばばばぐ。',
     items: [
       { tag:'fix',    text:'スマホでのスタイルの修正' },
@@ -265,7 +278,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.14.5', date: '2026.05.21', type: 'minor', open: true,
+    version: 'v1.14.5', date: '2026.05.21', type: 'minor', open: false,
     summary: '小さいけど大きい変更(?)。',
     items: [
       { tag:'add',    text:'カレンダーからToDoを追加の際、終了日が選べるように' },
@@ -277,7 +290,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.14.1', date: '2026.05.10', type: 'minor', open: true,
+    version: 'v1.14.1', date: '2026.05.10', type: 'minor', open: false,
     summary: '小さい変更。',
     items: [
       { tag:'add',    text:'ホームページ追加に伴う更新' },
@@ -285,7 +298,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.14.0', date: '2026.05.08', type: 'minor', open: true,
+    version: 'v1.14.0', date: '2026.05.08', type: 'minor', open: false,
     summary: 'ロゴの追加。',
     items: [
       { tag:'add',    text:'ロゴを追加' },
