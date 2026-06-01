@@ -240,6 +240,14 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.15.3', date: '2026.05.28', type: 'minor', open: true,
+    summary: 'こまけえ',
+    items: [
+      { tag:'fix',    text:'D&Dの目印の位置がずれる問題を修正' },
+      { tag:'change',    text:'D&Dの目印の形を戻した' }
+    ],
+  },
+  {
     version: 'v1.15.2', date: '2026.05.28', type: 'minor', open: true,
     summary: 'バグ',
     items: [
