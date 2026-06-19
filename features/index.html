@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ツミキappの魅力を紹介。タイマー・グラフ・音楽・ToDo が1ページに揃う、自分好みにカスタマイズできる勉強時間管理ツール。">
+<title>ツミキappの魅力 — Features — ツミキapp</title>
+<link rel="icon" href="https://tsumiki.app/favicon-v2.ico?v=2" type="image/x-icon">
+<link rel="icon" href="https://tsumiki.app/favicon-v2.png" type="image/png">
+<link rel="shortcut icon" href="https://tsumiki.app/favicon-v2.ico?v=2">
+<link rel="shortcut icon" type="image/webp" href="https://tsumiki.app/favicon-v2.webp?v=2">
+<link rel="icon" type="image/png" sizes="17x17" href="https://tsumiki.app/favicon-v2-17x.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://tsumiki.app/favicon-v2-32x.png?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="https://tsumiki.app/favicon-v2-48x.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="https://tsumiki.app/apple-touch-icon-v2.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@14,100;14,200;14,400&family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+/* ===== FEATURES PAGE ===== */
+
+.feat-big-text {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  text-align: center;
+  line-height: 1.7;
+  letter-spacing: .5px;
+  margin-bottom: 16px;
+}
+.feat-big-text .accent {
+  color: var(--primary-color);
+}
+body.dark .feat-big-text .accent {
+  color: var(--primary-color-dark, var(--primary-color));
+}
+
+.feat-sub {
+  text-align: center;
+  font-size: .95rem;
+  opacity: .6;
+  line-height: 1.9;
+  max-width: 540px;
+  margin: 0 auto 48px;
+}
+
+/* Demo phone frame */
+.demo-frame {
+  max-width: 380px;
+  margin: 0 auto 48px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--panel-light);
+  transition: background .3s;
+}
+body.dark .demo-frame {
+  background: var(--panel-dark);
+}
+.demo-inner {
+  padding: 32px 24px 28px;
+  text-align: center;
+}
+
+/* Timer demo */
+.demo-timer {
+  font-size: 3.2rem;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  margin: 20px 0 12px;
+  letter-spacing: 1px;
+}
+.demo-session {
+  font-size: .88rem;
+  opacity: .6;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.demo-menu {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.demo-menu-btn {
+  padding: 8px 20px;
+  border-radius: 24px;
+  border: none;
+  font-size: .88rem;
+  font-family: inherit;
+  cursor: default;
+  background: var(--panel-light);
+  color: #323232;
+  transition: all .2s;
+}
+body.dark .demo-menu-btn {
+  background: var(--panel-dark);
+  color: #e8e8e8;
+}
+.demo-menu-btn.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+body.dark .demo-menu-btn.active {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+.demo-start-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  border-radius: 24px;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: #fff;
+  transition: all .2s;
+}
+body.dark .demo-start-btn {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+.demo-start-btn:hover {
+  transform: scale(1.03);
+  opacity: .9;
+}
+.demo-group-input {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 24px;
+  border: 2px solid transparent;
+  font-size: .9rem;
+  font-family: inherit;
+  background: var(--bg-light);
+  color: #323232;
+  margin-bottom: 14px;
+  transition: border-color .2s;
+}
+body.dark .demo-group-input {
+  background: var(--bg-dark);
+  color: #e8e8e8;
+}
+.demo-group-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+.demo-label {
+  display: block;
+  font-size: .72rem;
+  opacity: .4;
+  text-align: right;
+  margin-top: 8px;
+}
+
+/* Music demo */
+.demo-music-panel {
+  background: var(--bg-light);
+  border-radius: 20px;
+  padding: 18px 20px;
+  text-align: left;
+  margin-bottom: 16px;
+  transition: background .3s;
+}
+body.dark .demo-music-panel {
+  background: var(--bg-dark);
+}
+.demo-music-title {
+  font-size: .95rem;
+  margin-bottom: 12px;
+  opacity: .9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.demo-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 24px;
+  background: rgba(0,0,0,.08);
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+body.dark .demo-progress-track {
+  background: rgba(255,255,255,.1);
+}
+.demo-progress-bar {
+  height: 100%;
+  border-radius: 24px;
+  background: var(--primary-color);
+  transition: width .4s linear;
+}
+body.dark .demo-progress-bar {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+.demo-time {
+  font-size: .75rem;
+  opacity: .6;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 14px;
+}
+.demo-player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.demo-player-btn {
+  background: none;
+  border: none;
+  cursor: default;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  opacity: .6;
+}
+.demo-player-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.demo-play-main {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: default;
+}
+body.dark .demo-play-main {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+.demo-play-main svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.demo-playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: .88rem;
+  opacity: .7;
+  transition: all .15s;
+}
+.demo-playlist-item.active-song {
+  opacity: 1;
+  background: rgba(157,180,200,.12);
+}
+body.dark .demo-playlist-item.active-song {
+  background: rgba(122,149,171,.15);
+}
+.demo-playlist-item .song-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  flex-shrink: 0;
+  opacity: 0;
+}
+.demo-playlist-item.active-song .song-dot {
+  opacity: 1;
+}
+
+/* ToDo demo */
+.demo-todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--bg-light);
+  margin-bottom: 8px;
+  transition: all .2s;
+}
+body.dark .demo-todo-item {
+  background: var(--bg-dark);
+}
+.demo-todo-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+body.dark .demo-todo-check {
+  border-color: var(--primary-color-dark, var(--primary-color));
+}
+.demo-todo-check.checked {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+body.dark .demo-todo-check.checked {
+  background: var(--primary-color-dark, var(--primary-color));
+  border-color: var(--primary-color-dark, var(--primary-color));
+}
+.demo-todo-check.checked svg {
+  opacity: 1;
+}
+.demo-todo-check svg {
+  width: 13px;
+  height: 13px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+.demo-todo-text {
+  font-size: .9rem;
+  flex: 1;
+}
+.demo-todo-text.done {
+  text-decoration: line-through;
+  opacity: .45;
+}
+.demo-todo-priority {
+  padding: 2px 10px;
+  border-radius: 24px;
+  font-size: .72rem;
+  flex-shrink: 0;
+}
+.priority-high { background: rgba(217,168,168,.22); color: #c97a7a; }
+.priority-normal { background: rgba(157,180,200,.22); color: var(--primary-color); }
+.priority-low { background: rgba(168,201,168,.22); color: #6fa86f; }
+
+/* Theme swatches */
+.theme-swatches {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.theme-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  border: 3px solid transparent;
+}
+.theme-swatch:hover {
+  transform: scale(1.12);
+}
+.theme-swatch.selected {
+  border-color: #323232;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.1);
+}
+body.dark .theme-swatch.selected {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.15);
+}
+
+/* Feature showcase block */
+.showcase {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+.showcase-split {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.showcase-split.reverse {
+  flex-direction: row-reverse;
+}
+.showcase-text {
+  flex: 1;
+  min-width: 0;
+}
+.showcase-demo {
+  flex: 1;
+  min-width: 280px;
+}
+.showcase-title {
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.showcase-title .s-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(157,180,200,.18);
+  flex-shrink: 0;
+}
+body.dark .showcase-title .s-icon {
+  background: rgba(122,149,171,.22);
+}
+.showcase-title .s-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--primary-color);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+body.dark .showcase-title .s-icon svg {
+  stroke: var(--primary-color-dark, var(--primary-color));
+}
+.showcase-desc {
+  font-size: .92rem;
+  opacity: .7;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.showcase-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+.showcase-list li {
+  font-size: .88rem;
+  opacity: .75;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.6;
+}
+.showcase-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary-color);
+}
+body.dark .showcase-list li::before {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+
+/* Stats row */
+.feat-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.feat-stat {
+  padding: 24px 12px;
+  border-radius: 24px;
+  text-align: center;
+  background: var(--panel-light);
+}
+body.dark .feat-stat {
+  background: var(--panel-dark);
+}
+.feat-stat-val {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 6px;
+}
+body.dark .feat-stat-val {
+  color: var(--primary-color-dark, var(--primary-color));
+}
+.feat-stat-lbl {
+  font-size: .8rem;
+  opacity: .6;
+}
+
+/* History card demo */
+.demo-history-card {
+  background: var(--bg-light);
+  border-radius: 20px;
+  padding: 18px 20px;
+  text-align: left;
+  margin-bottom: 10px;
+  transition: background .3s;
+}
+body.dark .demo-history-card {
+  background: var(--bg-dark);
+}
+.demo-history-date {
+  font-size: .95rem;
+  margin-bottom: 6px;
+}
+.demo-history-time {
+  font-size: .82rem;
+  opacity: .7;
+  margin-bottom: 4px;
+}
+.demo-history-duration {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+body.dark .demo-history-duration {
+  color: var(--primary-color-dark, var(--primary-color));
+}
+.demo-timeline-track {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  border-radius: 24px;
+  background: rgba(0,0,0,.08);
+  overflow: hidden;
+  margin-top: 8px;
+}
+body.dark .demo-timeline-track {
+  background: rgba(255,255,255,.1);
+}
+.demo-timeline-seg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 24px;
+  background: var(--primary-color);
+}
+body.dark .demo-timeline-seg {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+.demo-timeline-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: .68rem;
+  opacity: .55;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Toggle demo */
+.demo-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: var(--bg-light);
+  margin-bottom: 8px;
+  font-size: .88rem;
+  transition: background .3s;
+}
+body.dark .demo-toggle-row {
+  background: var(--bg-dark);
+}
+.demo-toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 24px;
+  background: #ccc;
+  position: relative;
+  cursor: pointer;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.demo-toggle.on {
+  background: var(--primary-color);
+}
+body.dark .demo-toggle.on {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+.demo-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform .2s;
+}
+.demo-toggle.on .demo-toggle-knob {
+  transform: translateX(20px);
+}
+
+/* Bounce tag */
+.bounce-tag {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 24px;
+  font-size: .82rem;
+  background: var(--primary-color);
+  color: #fff;
+  animation: bounceIn .6s;
+}
+body.dark .bounce-tag {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+@keyframes bounceIn {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .showcase-split,
+  .showcase-split.reverse {
+    flex-direction: column;
+  }
+  .showcase-demo {
+    min-width: 0;
+    width: 100%;
+  }
+  .feat-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+</head>
+<body class="light">
+
+<!-- テーマ切り替え -->
+<div class="top-buttons">
+  <button class="icon-btn" id="themeToggle" aria-label="テーマ切り替え">
+    <svg id="moonIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg id="sunIcon" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+</div>
+
+<!-- NAV -->
+<nav style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:28px 20px 0;">
+  <a href="https://about.tsumiki.app/" class="nav-pill">HOME</a>
+  <a href="https://about.tsumiki.app/blog/" class="nav-pill">BLOG</a>
+  <a href="https://about.tsumiki.app/changelog/" class="nav-pill">CHANGELOG</a>
+  <a href="https://about.tsumiki.app/help/" class="nav-pill">HELP</a>
+  <a href="https://tsumiki.app/" class="nav-pill">TSUMIKI.APP</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" style="min-height:auto; padding:80px 20px 48px;">
+  <div class="feat-big-text">
+    勉強の<span class="accent">すべて</span>が<br>この<span class="accent">1ページ</span>に。
+  </div>
+  <p><img class="hero-logo" id="heroLogo" src="https://tsumiki.app/tsumiki_logo.svg" alt="ツミキapp" style="margin-bottom:24px; width: 120px; height: auto;"></p>
+  <p class="hero-sub" style="margin-bottom:32px;">
+    タイマーで記録、グラフで可視化、音楽で集中、ToDoで管理。<br>
+    余計なものは省き、自分好みにカスタマイズして<br>
+    自分だけの勉強時間管理ツールにしよう。
+  </p>
+  <a href="https://tsumiki.app/" class="hero-btn">
+    <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    アプリを使う
+  </a>
+</section>
+
+<hr class="divider">
+
+<!-- ===== STATS ===== -->
+<div class="section" style="padding-bottom:0;">
+  <div class="feat-stats">
+    <div class="feat-stat"><div class="feat-stat-val">7色</div><div class="feat-stat-lbl">テーマカラー</div></div>
+    <div class="feat-stat"><div class="feat-stat-val">17+</div><div class="feat-stat-lbl">フォント</div></div>
+    <div class="feat-stat"><div class="feat-stat-val">1ページ</div><div class="feat-stat-lbl">全部入り</div></div>
+    <div class="feat-stat"><div class="feat-stat-val">0円</div><div class="feat-stat-lbl">広告なし</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 1. TIMER ===== -->
+<div class="showcase">
+  <h2 class="section-title">こんな感じで使えるよ</h2>
+  <div class="showcase-split">
+    <div class="showcase-text">
+      <div class="showcase-title">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        タイマーで記録
+      </div>
+      <p class="showcase-desc">
+        開始ボタンを押すだけ。<br>
+        ストップウォッチ形式で勉強時間を記録。<br>
+        グループ名をつければ教科ごとに分けられる。
+      </p>
+      <ul class="showcase-list">
+        <li>一時停止 / 再開に対応</li>
+        <li>フォーカスモード(ポモドーロ)搭載</li>
+        <li>ページを閉じてもタイマーは止まらない</li>
+        <li>タイムラインバーで一時停止を可視化</li>
+      </ul>
+    </div>
+    <div class="showcase-demo">
+      <!-- Timer demo -->
+      <div class="demo-frame">
+        <div class="demo-inner">
+          <div class="demo-menu">
+            <div class="demo-menu-btn active">タイマー</div>
+            <div class="demo-menu-btn">統計</div>
+            <div class="demo-menu-btn">リスト</div>
+          </div>
+          <div class="demo-timer" id="demoTimer">00:00:00</div>
+          <input class="demo-group-input" type="text" placeholder="グループ名(任意)">
+          <div class="demo-session" id="demoSession">開始ボタンを押して学習を始めましょう</div>
+          <button class="demo-start-btn" id="demoStartBtn">勉強開始</button>
+          <div class="demo-label">※ デモです — 実際のアプリで試そう!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 2. MUSIC ===== -->
+<div class="showcase">
+  <div class="showcase-split reverse">
+    <div class="showcase-text">
+      <div class="showcase-title">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        音楽で集中
+      </div>
+      <p class="showcase-desc">
+        フォルダをインポートして聞くだけじゃない。<br>
+        ループ、シャッフル、次/前の曲、再生/停止...一般的な機能はもちろん。<br>
+        <strong>プレイリスト</strong>で気分によって曲のリストを丸ごと変えて保存できる。
+      </p>
+      <ul class="showcase-list">
+        <li>mp3 / wav / flac / m4a / aac / ogg / webm 対応</li>
+        <li>タイマー停止時に音楽も自動停止</li>
+        <li>再読み込み後も一回タップで再開</li>
+      </ul>
+    </div>
+    <div class="showcase-demo">
+      <div class="demo-frame">
+        <div class="demo-inner" style="text-align:left;">
+          <div class="demo-music-panel">
+            <div class="demo-music-title" id="demoMusicTitle">Lofi Study Beats - Track 03</div>
+            <div class="demo-progress-track"><div class="demo-progress-bar" id="demoProgressBar" style="width:35%;"></div></div>
+            <div class="demo-time" id="demoMusicTime">1:24 / 4:02</div>
+            <div class="demo-player-controls">
+              <div class="demo-player-btn"><img src="prev.webp" alt="前へ" style="width:20px;height:20px;opacity:.75;"></div>
+              <div class="demo-play-main" id="demoPlayBtn"><img src="play.webp" alt="再生" style="width:22px;height:22px;filter:brightness(0) invert(1);"></div>
+              <div class="demo-player-btn"><img src="next.webp" alt="次へ" style="width:20px;height:20px;opacity:.75;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px solid rgba(0,0,0,.05);">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <img src="volume.webp" alt="音量" style="width:18px;height:18px;opacity:.6;">
+              </div>
+              <div style="display:flex; gap:8px;">
+                <img src="loop_off.webp" alt="ループ" style="width:18px;height:18px;opacity:.6;">
+                <img src="shuffle_off.webp" alt="シャッフル" style="width:18px;height:18px;opacity:.6;">
+              </div>
+            </div>
+          </div>
+          <div style="font-size:.82rem; opacity:.5; margin-bottom:8px;">プレイリスト</div>
+          <div class="demo-playlist-item active-song"><span class="song-dot"></span> Lofi Study Beats - Track 03</div>
+          <div class="demo-playlist-item"><span class="song-dot"></span> Calm Piano - Rainy Day</div>
+          <div class="demo-playlist-item"><span class="song-dot"></span> Ambient Focus Flow</div>
+          <div class="demo-label" style="text-align:right;">※ デモ表示です</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 3. TODO ===== -->
+<div class="showcase">
+  <div class="showcase-split">
+    <div class="showcase-text">
+      <div class="showcase-title">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        ToDoで管理
+      </div>
+      <p class="showcase-desc">
+        タスクを管理できる...だけじゃない。<br>
+        <strong>カレンダー</strong>つき。特定の日だけ、この日からこの日まで、<br>
+        など指定が柔軟で、工夫次第でめっちゃ便利だよ。
+      </p>
+      <ul class="showcase-list">
+        <li>優先度(高 / 通常 / 低)で色分け</li>
+        <li>繰り返し(毎日 / 毎週 / 毎月)</li>
+        <li>カレンダービューで一覧</li>
+        <li>並び替え&フィルタリング</li>
+      </ul>
+    </div>
+    <div class="showcase-demo">
+      <div class="demo-frame">
+        <div class="demo-inner" style="text-align:left;">
+          <div style="display:flex; gap:8px; margin-bottom:16px;">
+            <div class="demo-menu-btn active" style="font-size:.82rem; padding:6px 16px;">ToDoリスト</div>
+            <div class="demo-menu-btn" style="font-size:.82rem; padding:6px 16px;">カレンダー</div>
+          </div>
+          <div class="demo-todo-item">
+            <div class="demo-todo-check checked" onclick="this.classList.toggle('checked');this.closest('.demo-todo-item').querySelector('.demo-todo-text').classList.toggle('done');">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span class="demo-todo-text done">英単語50個復習する</span>
+            <span class="demo-todo-priority priority-high">高</span>
+          </div>
+          <div class="demo-todo-item">
+            <div class="demo-todo-check" onclick="this.classList.toggle('checked');this.closest('.demo-todo-item').querySelector('.demo-todo-text').classList.toggle('done');">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span class="demo-todo-text">数学ワーク P.42〜45</span>
+            <span class="demo-todo-priority priority-normal">通常</span>
+          </div>
+          <div class="demo-todo-item">
+            <div class="demo-todo-check" onclick="this.classList.toggle('checked');this.closest('.demo-todo-item').querySelector('.demo-todo-text').classList.toggle('done');">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span class="demo-todo-text">理科 実験レポートまとめ</span>
+            <span class="demo-todo-priority priority-normal">通常</span>
+          </div>
+          <div class="demo-todo-item">
+            <div class="demo-todo-check" onclick="this.classList.toggle('checked');this.closest('.demo-todo-item').querySelector('.demo-todo-text').classList.toggle('done');">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span class="demo-todo-text">読書(20分)</span>
+            <span class="demo-todo-priority priority-low">低</span>
+          </div>
+          <div class="demo-label" style="text-align:right;">※ チェックしてみよう!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 4. GRAPH / HISTORY ===== -->
+<div class="showcase">
+  <div class="showcase-split reverse">
+    <div class="showcase-text">
+      <div class="showcase-title">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        グラフで可視化
+      </div>
+      <p class="showcase-desc">
+        棒・折れ線・面グラフで学習時間を可視化。<br>
+        連続日数・総セッション数などの統計表示。<br>
+        タイムラインバーで一時停止の可視化まで。
+      </p>
+      <ul class="showcase-list">
+        <li>グラフの種類 / 表示期間 / 表示場所もカスタム</li>
+        <li>グループ別に集計できる</li>
+        <li>JSONエクスポート / インポート対応</li>
+      </ul>
+    </div>
+    <div class="showcase-demo">
+      <div class="demo-frame">
+        <div class="demo-inner" style="text-align:left;">
+          <div style="font-size:.82rem; opacity:.5; margin-bottom:14px;">記録リスト</div>
+          <!-- History card 1 -->
+          <div class="demo-history-card">
+            <div class="demo-history-date">2026年6月19日(木)</div>
+            <div class="demo-history-time">14:20 — 16:05</div>
+            <div class="demo-history-duration">01:45:00</div>
+            <span style="display:inline-block;padding:3px 10px;border-radius:24px;font-size:.78rem;background:var(--primary-color);color:#fff;">数学</span>
+            <div class="demo-timeline-scale"><span>14:20</span><span>16:05</span></div>
+            <div class="demo-timeline-track">
+              <div class="demo-timeline-seg" style="left:0;width:38%;"></div>
+              <div class="demo-timeline-seg" style="left:45%;width:55%;"></div>
+            </div>
+          </div>
+          <!-- History card 2 -->
+          <div class="demo-history-card">
+            <div class="demo-history-date">2026年6月18日(水)</div>
+            <div class="demo-history-time">20:00 — 21:30</div>
+            <div class="demo-history-duration">01:30:00</div>
+            <span style="display:inline-block;padding:3px 10px;border-radius:24px;font-size:.78rem;background:var(--primary-color);color:#fff;">英語</span>
+            <div class="demo-timeline-scale"><span>20:00</span><span>21:30</span></div>
+            <div class="demo-timeline-track">
+              <div class="demo-timeline-seg" style="left:0;width:100%;"></div>
+            </div>
+          </div>
+          <div class="demo-label" style="text-align:right;">※ 実際の記録カードの再現</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 5. CUSTOMIZE ===== -->
+<div class="showcase">
+  <h2 class="section-title" style="margin-bottom:12px;">自由なカスタマイズ</h2>
+  <p class="feat-sub" style="margin-bottom:40px;">
+    具体的にどんな感じでカスタマイズできるのかって?<br>
+    まずテーマカラーが7色ある。少ないって?<br>
+    ダークモードもあるよ。<span style="color:var(--primary-color);">これで14色!</span>
+  </p>
+
+  <div class="showcase-split">
+    <div class="showcase-text">
+      <div class="showcase-title">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c.55 0 1-.45 1-1v-.09c0-.27-.11-.52-.29-.71a1.003 1.003 0 0 1 .71-1.71h1.83c3.04 0 5.5-2.46 5.5-5.5C20.75 5.94 16.92 2 12 2z"/></svg></div>
+        テーマカラーを試してみよう
+      </div>
+      <p class="showcase-desc">
+        下のカラーをクリックすると、<br>
+        このページ全体のアクセントカラーが変わるよ。<br>
+        実際のアプリでもこの感じで変わる!
+      </p>
+      <div class="theme-swatches" id="themeSwatches">
+        <div class="theme-swatch selected" data-theme="blue" style="background:#9db4c8;" title="Blue"></div>
+        <div class="theme-swatch" data-theme="green" style="background:#a8c9a8;" title="Green"></div>
+        <div class="theme-swatch" data-theme="purple" style="background:#b8a8c9;" title="Purple"></div>
+        <div class="theme-swatch" data-theme="orange" style="background:#d9b4a0;" title="Orange"></div>
+        <div class="theme-swatch" data-theme="pink" style="background:#d9a8b4;" title="Pink"></div>
+        <div class="theme-swatch" data-theme="teal" style="background:#a0c9c9;" title="Teal"></div>
+        <div class="theme-swatch" data-theme="white" style="background:#b2b2b2;" title="White"></div>
+      </div>
+    </div>
+    <div class="showcase-demo">
+      <div class="demo-frame">
+        <div class="demo-inner" style="text-align:left;">
+          <div style="font-size:.82rem; opacity:.5; margin-bottom:12px;">設定</div>
+          <div class="demo-toggle-row">
+            <span>音楽プレイヤー</span>
+            <div class="demo-toggle on" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
+          </div>
+          <div class="demo-toggle-row">
+            <span>ToDoリスト</span>
+            <div class="demo-toggle on" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
+          </div>
+          <div class="demo-toggle-row">
+            <span>ToDo Ver.2</span>
+            <div class="demo-toggle on" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
+          </div>
+          <div class="demo-toggle-row">
+            <span>タイムラインバー表示</span>
+            <div class="demo-toggle on" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
+          </div>
+          <div class="demo-toggle-row">
+            <span>ローディングアニメーション</span>
+            <div class="demo-toggle" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
+          </div>
+          <div class="demo-label" style="text-align:right;">※ トグルしてみよう!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 6. MORE FEATURES ===== -->
+<div class="section">
+  <h2 class="section-title">語りきれない便利機能</h2>
+  <p class="feat-sub" style="margin-bottom:40px;">
+    細かいけど地味に嬉しい。<br>そういうのが盛りだくさん。
+  </p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
+        <h3>途中で再読み込みしてもほぼ無傷</h3>
+      </div>
+      <ul>
+        <li>音楽も一回画面を押すだけでまた再開する</li>
+        <li>タイマーは変わらず動き続ける — なんかした?ってぐらい</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>フォーカスモード(ポモドーロ)</h3>
+      </div>
+      <ul>
+        <li>25分集中 / 5分休憩を自動で切り替え</li>
+        <li>オフにすれば普通のタイマーとしても使える</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>英語完全対応</h3>
+      </div>
+      <ul>
+        <li>UIを丸ごと英語に切り替え可能</li>
+        <li>日本語 / 英語をワンクリックで</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></div>
+        <h3>フォント17種類以上</h3>
+      </div>
+      <ul>
+        <li>日本語用 / 英数字用を個別に設定</li>
+        <li>Zen Kaku Gothic Antique, Klee One, Hina Mincho, JetBrains Mono...</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>まだまだある</h3>
+      </div>
+      <ul>
+        <li>タイマーごとのグループ分け</li>
+        <li>総勉強時間 / 連続日数等も統計で可視化</li>
+        <li>チュートリアル搭載で初心者も安心</li>
+        <li><a href="https://about.tsumiki.app/help/" class="text-link">ヘルプページ</a>にほぼ全部載っている</li>
+        <li>サポート対応(<a href="mailto:info@tsumiki.app" class="text-link">info@tsumiki.app</a>)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== CTA ===== -->
+<div class="section" style="text-align:center; padding-top:48px;">
+  <div class="feat-big-text" style="margin-bottom:12px;">
+    気になったら、<span class="accent">使ってみよう。</span>
+  </div>
+  <p style="font-size:.92rem; opacity:.55; margin-bottom:32px; line-height:1.8;">無料。広告なし。登録不要。ブラウザだけで今すぐ。</p>
+  <a href="https://tsumiki.app/" class="hero-btn" style="font-size:1.05rem; padding:16px 44px;">
+    <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    ツミキappを開く
+  </a>
+
+  <div class="links" style="margin-top:48px;">
+    <a href="mailto:info@tsumiki.app" class="link-badge">
+      <svg class="link-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>info@tsumiki.app</span>
+    </a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<footer>
+  &copy; 2025-2026 ツミキapp / Super Hiko14 / 高級ジェネ&trade; All Rights Reserved.
+  <div class="footer-credit" aria-label="Created by Super Hiko14">
+    <div class="footer-credit-label">Created by</div>
+    <div class="footer-credit-main">Super Hiko14<span class="footer-credit-dot">.</span></div>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+<script>
+(function() {
+  // Timer demo
+  var timerEl = document.getElementById('demoTimer');
+  var sessionEl = document.getElementById('demoSession');
+  var startBtn = document.getElementById('demoStartBtn');
+  var timerRunning = false;
+  var timerSeconds = 0;
+  var timerInterval = null;
+
+  function formatTime(s) {
+    var h = Math.floor(s / 3600);
+    var m = Math.floor((s % 3600) / 60);
+    var sec = s % 60;
+    return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+  }
+
+  if (startBtn) {
+    startBtn.addEventListener('click', function() {
+      if (!timerRunning) {
+        timerRunning = true;
+        startBtn.textContent = '終了';
+        sessionEl.textContent = '集中...!がんばれ!';
+        timerInterval = setInterval(function() {
+          timerSeconds++;
+          timerEl.textContent = formatTime(timerSeconds);
+        }, 1000);
+      } else {
+        timerRunning = false;
+        clearInterval(timerInterval);
+        startBtn.textContent = '勉強開始';
+        sessionEl.textContent = formatTime(timerSeconds) + ' — おつかれさま!';
+        timerSeconds = 0;
+        timerEl.textContent = '00:00:00';
+      }
+    });
+  }
+
+  // Music progress animation
+  var progressBar = document.getElementById('demoProgressBar');
+  var musicTime = document.getElementById('demoMusicTime');
+  var musicProgress = 35;
+  var totalSec = 242;
+  setInterval(function() {
+    musicProgress += 0.4;
+    if (musicProgress > 100) musicProgress = 0;
+    if (progressBar) progressBar.style.width = musicProgress + '%';
+    if (musicTime) {
+      var current = Math.floor((musicProgress / 100) * totalSec);
+      var cm = Math.floor(current / 60);
+      var cs = current % 60;
+      musicTime.textContent = cm + ':' + String(cs).padStart(2,'0') + ' / 4:02';
+    }
+  }, 600);
+
+  // Theme swatch switcher — full theme data from tsumiki.app
+  var themes = {
+    blue:   { primary:'#9db4c8', hover:'#8ba4b8', dark:'#7a95ab', bgLight:'#f8f9fb', bgDark:'#17181d', panelLight:'#f0f2f7', panelDark:'#252a38', panelLightBorder:'#dfe1e6', panelDark2:'#3d4454', panelLightHover:'#e6e8ed' },
+    green:  { primary:'#a8c9a8', hover:'#96b896', dark:'#85a685', bgLight:'#f7faf7', bgDark:'#141815', panelLight:'#eff5ef', panelDark:'#242e28', panelLightBorder:'#dbe6db', panelDark2:'#3a4a3e', panelLightHover:'#e4ede4' },
+    purple: { primary:'#b8a8c9', hover:'#a898b9', dark:'#9688a7', bgLight:'#faf7fb', bgDark:'#201e27', panelLight:'#f5eff7', panelDark:'#353144', panelLightBorder:'#e3dbe8', panelDark2:'#4a4460', panelLightHover:'#ebe4ef' },
+    orange: { primary:'#d9b4a0', hover:'#c9a490', dark:'#b89580', bgLight:'#faf6f3', bgDark:'#161310', panelLight:'#f5f0ed', panelDark:'#2e2621', panelLightBorder:'#e6ddd7', panelDark2:'#4a3e35', panelLightHover:'#ede6e1' },
+    pink:   { primary:'#d9a8b4', hover:'#c998a4', dark:'#b88894', bgLight:'#faf7f8', bgDark:'#1b1516', panelLight:'#f5eff1', panelDark:'#2e2426', panelLightBorder:'#e6dbe0', panelDark2:'#4a3a3e', panelLightHover:'#ede4e8' },
+    teal:   { primary:'#a0c9c9', hover:'#90b9b9', dark:'#80a6a6', bgLight:'#f7fafa', bgDark:'#141b1b', panelLight:'#eff5f5', panelDark:'#243030', panelLightBorder:'#dbe6e6', panelDark2:'#3a4a4a', panelLightHover:'#e4eded' },
+    white:  { primary:'#b2b2b2', hover:'#a2a2a2', dark:'#8a8a8a', bgLight:'#fdfdfd', bgDark:'#0a0a0a', panelLight:'#f5f5f5', panelDark:'#151515', panelLightBorder:'#e0e0e0', panelDark2:'#2a2a2a', panelLightHover:'#ebebeb' }
+  };
+
+  var swatches = document.querySelectorAll('.theme-swatch');
+  swatches.forEach(function(sw) {
+    sw.addEventListener('click', function() {
+      swatches.forEach(function(s) { s.classList.remove('selected'); });
+      sw.classList.add('selected');
+      var t = themes[sw.getAttribute('data-theme')];
+      if (!t) return;
+      var root = document.documentElement;
+      root.style.setProperty('--primary-color', t.primary);
+      root.style.setProperty('--primary-hover', t.hover);
+      root.style.setProperty('--primary-color-dark', t.dark);
+      root.style.setProperty('--bg-light', t.bgLight);
+      root.style.setProperty('--bg-dark', t.bgDark);
+      root.style.setProperty('--panel-light', t.panelLight);
+      root.style.setProperty('--panel-dark', t.panelDark);
+      root.style.setProperty('--panel-light-border', t.panelLightBorder);
+      root.style.setProperty('--panel-dark-2', t.panelDark2);
+      root.style.setProperty('--panel-light-hover', t.panelLightHover);
+    });
+  });
+})();
+</script>
+</body>
+</html>

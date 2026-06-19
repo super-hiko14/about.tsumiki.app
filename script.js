@@ -240,6 +240,19 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.16.0', date: '2026.06.20', type: 'major', open: true,
+    summary: '',
+    items: [
+      { tag: 'add', text: 'ホバー時のカラーを全テーマに追加' },
+      { tag:'change', text:'フォントの差し替え(英語フォントのデフォルトをJostに変更, 英フォント内のZen Kaku Gothicを削除)' },
+      { tag:'change', text:'チェックボックスを改善' },
+      { tag:'change', text: 'ToDoの描画変更' },
+      { tag:'change', text: 'タイムラインバーの仕様を1つのitemに今日が表示ではなく開始~終了で一時停止が見えるように変更' },
+      { tag:'change', text: '統計画面に今日の総セッション勉強時間がタイムラインバーで可視化できるように' },
+      { tag:'remove', text: '色々統括で意義がなくなってしまったToDoV2のon/offを削除' },
+    ],
+  },
+  {
     version: 'v1.15.3', date: '2026.05.28', type: 'minor', open: true,
     summary: 'こまけえ',
     items: [
