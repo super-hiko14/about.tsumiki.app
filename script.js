@@ -240,8 +240,16 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.16.0A', date: '2026.06.20', type: 'major', open: true,
+    summary: '追加しきれなかった分を(この2つ1文x2でまとまってるけど普通に結構すごいアプデ)',
+    items: [
+      { tag: 'add', text: 'エディターモードを追加' },
+      { tag: 'add', text: '暗記カード機能を追加' }
+    ],
+  },
+  {
     version: 'v1.16.0', date: '2026.06.20', type: 'major', open: true,
-    summary: '',
+    summary: '結構盛った(?)',
     items: [
       { tag: 'add', text: 'ホバー時のカラーを全テーマに追加' },
       { tag:'change', text:'フォントの差し替え(英語フォントのデフォルトをJostに変更, 英フォント内のZen Kaku Gothicを削除)' },
@@ -249,11 +257,11 @@ const CHANGELOG_VERSIONS = [
       { tag:'change', text: 'ToDoの描画変更' },
       { tag:'change', text: 'タイムラインバーの仕様を1つのitemに今日が表示ではなく開始~終了で一時停止が見えるように変更' },
       { tag:'change', text: '統計画面に今日の総セッション勉強時間がタイムラインバーで可視化できるように' },
-      { tag:'remove', text: '色々統括で意義がなくなってしまったToDoV2のon/offを削除' },
+      { tag:'remove', text: '色々統括で意義がなくなってしまったToDoV2のon/offを削除' }
     ],
   },
   {
-    version: 'v1.15.3', date: '2026.05.28', type: 'minor', open: true,
+    version: 'v1.15.3', date: '2026.05.28', type: 'minor', open: false,
     summary: 'こまけえ',
     items: [
       { tag:'fix',    text:'D&Dの目印の位置がずれる問題を修正' },
@@ -261,14 +269,14 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.15.2', date: '2026.05.28', type: 'minor', open: true,
+    version: 'v1.15.2', date: '2026.05.28', type: 'minor', open: false,
     summary: 'バグ',
     items: [
       { tag:'fix',    text:'音楽インポートに濁点半濁点があった場合それらにフォントが適用されない問題の修正' }
     ],
   },
   {
-    version: 'v1.15.1', date: '2026.05.27', type: 'minor', open: true,
+    version: 'v1.15.1', date: '2026.05.27', type: 'minor', open: false,
     summary: '調整',
     items: [
       { tag:'add',    text:'ToDoで期間を詳しく設定できるように' },
@@ -279,7 +287,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.15.0', date: '2026.05.26', type: 'minor', open: true,
+    version: 'v1.15.0', date: '2026.05.26', type: 'minor', open: false,
     summary: 'バグ日和。',
     items: [
       { tag:'add',    text:'selectをフォーカス時、borderが出るように' },
@@ -291,7 +299,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.14.7', date: '2026.05.25', type: 'minor', open: true,
+    version: 'v1.14.7', date: '2026.05.25', type: 'minor', open: false,
     summary: 'ﾃﾞﾃﾞｰﾝ',
     items: [
       { tag:'fix',    text:'チュートリアルの質問のUIの改善' }
