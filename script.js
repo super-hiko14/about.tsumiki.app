@@ -240,7 +240,21 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
-    version: 'v1.16.0A', date: '2026.06.20', type: 'major', open: true,
+    version: 'v1.16.0AA', date: '2026.06.22', type: 'minor', open: true,
+    summary: 'v1.16.0Aにちょっと調整を加えました',
+    items: [
+      { tag: '', text: 'v1.16.00A-mini_fix(6.21)' },
+      { tag: 'fix', text: 'エディターモードの[+]がバグっていた問題を修正' },
+      { tag: '', text: 'v1.16.00AA(6.22)' },
+      { tag: 'add', text: 'エディターモードでの編集可能要素に目印を' },
+      { tag: 'change', text: 'エディターモードでの編集可能/編集内容要素を調整' },
+      { tag: 'change', text: 'エディターモード/暗記カードでのデザイン等を調整' },
+      { tag: 'change', text: '一部のデザイン/フォントの太さ等を調整' },
+      { tag: 'fix', text: '暗記カードを飛ばす際背景がスクロールできてしまう問題を修正' },
+    ],
+  },
+  {
+    version: 'v1.16.0A', date: '2026.06.21', type: 'major', open: true,
     summary: '追加しきれなかった分を(この2つ1文x2でまとまってるけど普通に結構すごいアプデ)',
     items: [
       { tag: 'add', text: 'エディターモードを追加' },
