@@ -240,6 +240,14 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.16.0B', date: '2026.06.22', type: 'minor', open: true,
+    summary: '1.16.0の追加(?)',
+    items: [
+      { tag: 'add', text: '音楽ミニプレイヤーの追加' },
+      { tag: 'change', text: 'リストのUI整理' },
+    ],
+  },
+  {
     version: 'v1.16.0AA', date: '2026.06.22', type: 'minor', open: true,
     summary: 'v1.16.0Aにちょっと調整を加えました',
     items: [
