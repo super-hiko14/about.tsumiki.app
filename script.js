@@ -240,7 +240,15 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
-    version: 'v1.16.0B', date: '2026.06.22', type: 'minor', open: true,
+    version: 'v1.16.0C', date: '2026.06.25', type: 'minor', open: true,
+    summary: '1.16.0を永遠と擦ってる気がする',
+    items: [
+      { tag: 'add', text: 'フルスクリーンを追加' },
+      { tag: 'add', text: 'フォーカスモードのバーを追加' },
+    ],
+  },
+  {
+    version: 'v1.16.0B', date: '2026.06.24', type: 'minor', open: true,
     summary: '1.16.0の追加(?)',
     items: [
       { tag: 'add', text: '音楽ミニプレイヤーの追加' },
