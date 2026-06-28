@@ -240,6 +240,14 @@ function bindBlogEvents() {
 
 const CHANGELOG_VERSIONS = [
   {
+    version: 'v1.16.1', date: '2026.06.29', type: 'minor', open: true,
+    summary: 'youtube。',
+    items: [
+      { tag: 'add', text: 'プレイリストにyoutube動画を追加' },
+      { tag: 'add', text: 'ミニプレイヤーが強化' },
+    ],
+  },
+  {
     version: 'v1.16.0C', date: '2026.06.25', type: 'minor', open: true,
     summary: '1.16.0を永遠と擦ってる気がする',
     items: [
@@ -270,7 +278,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.16.0A', date: '2026.06.21', type: 'major', open: true,
+    version: 'v1.16.0A', date: '2026.06.21', type: 'major', open: false,
     summary: '追加しきれなかった分を(この2つ1文x2でまとまってるけど普通に結構すごいアプデ)',
     items: [
       { tag: 'add', text: 'エディターモードを追加' },
@@ -278,7 +286,7 @@ const CHANGELOG_VERSIONS = [
     ],
   },
   {
-    version: 'v1.16.0', date: '2026.06.20', type: 'major', open: true,
+    version: 'v1.16.0', date: '2026.06.20', type: 'major', open: false,
     summary: '結構盛った(?)',
     items: [
       { tag: 'add', text: 'ホバー時のカラーを全テーマに追加' },
