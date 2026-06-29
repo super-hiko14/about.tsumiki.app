@@ -1,7 +1,7 @@
 [
   {
-    "version": "v1.16.2", "date": "2026.06.29", "type": "minor", "open": true,
-    "summary": "youtube。",
+    "version": "v1.16.1A", "date": "2026.06.29", "type": "minor", "open": true,
+    "summary": "結構修正。",
     "items": [
       { "tag": "add", "text": "エディターモードの編集可能要素にミニプレイヤーを追加" },
       { "tag": "fix", "text": "フルスクリーン時にミニプレイヤーが隠れないように修正" },
