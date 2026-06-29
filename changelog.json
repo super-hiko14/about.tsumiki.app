@@ -1,0 +1,245 @@
+[
+  {
+    "version": "v1.16.2", "date": "2026.06.29", "type": "minor", "open": true,
+    "summary": "youtube。",
+    "items": [
+      { "tag": "add", "text": "エディターモードの編集可能要素にミニプレイヤーを追加" },
+      { "tag": "fix", "text": "フルスクリーン時にミニプレイヤーが隠れないように修正" },
+      { "tag": "fix", "text": "ミニプレイヤー移動時にリアルタイムで動画も移動するように修正" },
+      { "tag": "fix", "text": "Youtube動画追加URL記入欄にテキスト記入欄を同じ動作になるよう修正" }
+    ]
+  },
+  {
+    "version": "v1.16.1", "date": "2026.06.29", "type": "minor", "open": true,
+    "summary": "youtube。",
+    "items": [
+      { "tag": "add", "text": "プレイリストにyoutube動画を追加" },
+      { "tag": "add", "text": "ミニプレイヤーが強化" }
+    ]
+  },
+  {
+    "version": "v1.16.0C", "date": "2026.06.25", "type": "minor", "open": true,
+    "summary": "1.16.0を永遠と擦ってる気がする",
+    "items": [
+      { "tag": "add", "text": "フルスクリーンを追加" },
+      { "tag": "add", "text": "フォーカスモードのバーを追加" }
+    ]
+  },
+  {
+    "version": "v1.16.0B", "date": "2026.06.24", "type": "minor", "open": true,
+    "summary": "1.16.0の追加(?)",
+    "items": [
+      { "tag": "add", "text": "音楽ミニプレイヤーの追加" },
+      { "tag": "change", "text": "リストのUI整理" }
+    ]
+  },
+  {
+    "version": "v1.16.0AA", "date": "2026.06.22", "type": "minor", "open": true,
+    "summary": "v1.16.0Aにちょっと調整を加えました",
+    "items": [
+      { "tag": "", "text": "v1.16.00A-mini_fix(6.21)" },
+      { "tag": "fix", "text": "エディターモードの[+]がバグっていた問題を修正" },
+      { "tag": "", "text": "v1.16.00AA(6.22)" },
+      { "tag": "add", "text": "エディターモードでの編集可能要素に目印を" },
+      { "tag": "change", "text": "エディターモードでの編集可能/編集内容要素を調整" },
+      { "tag": "change", "text": "エディターモード/暗記カードでのデザイン等を調整" },
+      { "tag": "change", "text": "一部のデザイン/フォントの太さ等を調整" },
+      { "tag": "fix", "text": "暗記カードを飛ばす際背景がスクロールできてしまう問題を修正" }
+    ]
+  },
+  {
+    "version": "v1.16.0A", "date": "2026.06.21", "type": "major", "open": false,
+    "summary": "追加しきれなかった分を(この2つ1文x2でまとまってるけど普通に結構すごいアプデ)",
+    "items": [
+      { "tag": "add", "text": "エディターモードを追加" },
+      { "tag": "add", "text": "暗記カード機能を追加" }
+    ]
+  },
+  {
+    "version": "v1.16.0", "date": "2026.06.20", "type": "major", "open": false,
+    "summary": "結構盛った(?)",
+    "items": [
+      { "tag": "add", "text": "ホバー時のカラーを全テーマに追加" },
+      { "tag": "change", "text": "フォントの差し替え(英語フォントのデフォルトをJostに変更, 英フォント内のZen Kaku Gothicを削除)" },
+      { "tag": "change", "text": "チェックボックスを改善" },
+      { "tag": "change", "text": "ToDoの描画変更" },
+      { "tag": "change", "text": "タイムラインバーの仕様を1つのitemに今日が表示ではなく開始~終了で一時停止が見えるように変更" },
+      { "tag": "change", "text": "統計画面に今日の総セッション勉強時間がタイムラインバーで可視化できるように" },
+      { "tag": "remove", "text": "色々統括で意義がなくなってしまったToDoV2のon/offを削除" }
+    ]
+  },
+  {
+    "version": "v1.15.3", "date": "2026.05.28", "type": "minor", "open": false,
+    "summary": "こまけえ",
+    "items": [
+      { "tag": "fix", "text": "D&Dの目印の位置がずれる問題を修正" },
+      { "tag": "change", "text": "D&Dの目印の形を戻した" }
+    ]
+  },
+  {
+    "version": "v1.15.2", "date": "2026.05.28", "type": "minor", "open": false,
+    "summary": "バグ",
+    "items": [
+      { "tag": "fix", "text": "音楽インポートに濁点半濁点があった場合それらにフォントが適用されない問題の修正" }
+    ]
+  },
+  {
+    "version": "v1.15.1", "date": "2026.05.27", "type": "minor", "open": false,
+    "summary": "調整",
+    "items": [
+      { "tag": "add", "text": "ToDoで期間を詳しく設定できるように" },
+      { "tag": "fix", "text": "記録カードの下のバーの調整" },
+      { "tag": "fix", "text": "ToDoの日付表記をコンパクトに" },
+      { "tag": "change", "text": "カレンダーのデザイン一部変更" },
+      { "tag": "change", "text": "矢印をもう少しわかりやすく" }
+    ]
+  },
+  {
+    "version": "v1.15.0", "date": "2026.05.26", "type": "minor", "open": false,
+    "summary": "バグ日和。",
+    "items": [
+      { "tag": "add", "text": "selectをフォーカス時、borderが出るように" },
+      { "tag": "fix", "text": "ドラックアンドドロップでの移動の表現を線から間の矢印にすることでずれを改善" },
+      { "tag": "fix", "text": "ドラックアンドドロップを全体的に統一" },
+      { "tag": "fix", "text": "音楽の選択の多数のバグ修正" },
+      { "tag": "change", "text": "ToDoが中央揃えから左揃えに" },
+      { "tag": "remove", "text": "ToDoの進行度を削除" }
+    ]
+  },
+  {
+    "version": "v1.14.7", "date": "2026.05.25", "type": "minor", "open": false,
+    "summary": "ﾃﾞﾃﾞｰﾝ",
+    "items": [
+      { "tag": "fix", "text": "チュートリアルの質問のUIの改善" }
+    ]
+  },
+  {
+    "version": "v1.14.6", "date": "2026.05.21", "type": "minor", "open": false,
+    "summary": "ばばばぐ。",
+    "items": [
+      { "tag": "fix", "text": "スマホでのスタイルの修正" },
+      { "tag": "fix", "text": "言語選択を初回時のみに変更" }
+    ]
+  },
+  {
+    "version": "v1.14.5", "date": "2026.05.21", "type": "minor", "open": false,
+    "summary": "小さいけど大きい変更(?)。",
+    "items": [
+      { "tag": "add", "text": "カレンダーからToDoを追加の際、終了日が選べるように" },
+      { "tag": "change", "text": "初期画面の超刷新(初めてアクセスした際の画面)" },
+      { "tag": "change", "text": "テキスト入力欄を刷新/全体変更/統一" },
+      { "tag": "fix", "text": "おかしな日本語/英語の修正" },
+      { "tag": "fix", "text": "ボタンと入力欄の高さが一致しないデザインのバグ修正" },
+      { "tag": "remove", "text": "一時的なバグ対処として一部svgを削除" }
+    ]
+  },
+  {
+    "version": "v1.14.1", "date": "2026.05.10", "type": "minor", "open": false,
+    "summary": "小さい変更。",
+    "items": [
+      { "tag": "add", "text": "ホームページ追加に伴う更新" },
+      { "tag": "fix", "text": "著作権表記のミスを修正" }
+    ]
+  },
+  {
+    "version": "v1.14.0", "date": "2026.05.08", "type": "minor", "open": false,
+    "summary": "ロゴの追加。",
+    "items": [
+      { "tag": "add", "text": "ロゴを追加" },
+      { "tag": "change", "text": "navの上部にあるツミキappをsvgに" },
+      { "tag": "fix", "text": "ToDo優先度カラーのカスタムカラーピッカーのバグ修正" }
+    ]
+  },
+  {
+    "version": "v1.13.0", "date": "2026.04.30", "type": "minor", "open": false,
+    "summary": "音楽自動再生調整とToDoを少し刷新。",
+    "items": [
+      { "tag": "change", "text": "音楽自動再生に調整を加えました(タップで自動再開の有効時間の設定項目の追加)" },
+      { "tag": "change", "text": "デザインの統一" },
+      { "tag": "add", "text": "ToDoリストの並び替え機能の追加" },
+      { "tag": "add", "text": "ToDo優先度カラーのカスタムカラーピッカーを追加" }
+    ]
+  },
+  {
+    "version": "v1.12.0", "date": "2026.4.25", "type": "major", "open": false,
+    "summary": "favicon v2に変更したり、結構色々小さいですが変わりました。",
+    "items": [
+      { "tag": "change", "text": "favicon - v2に変更" },
+      { "tag": "add", "text": "faviconにて複数の解像度に対応" },
+      { "tag": "add", "text": "音楽自動再生を追加" },
+      { "tag": "add", "text": "一時停止時間の記録の追加" },
+      { "tag": "add", "text": "時刻によって変わるバーがリスト内の記録に追加(これでわかりやすく!)" },
+      { "tag": "fix", "text": "音楽のゾンビバグなどを修正" },
+      { "tag": "change", "text": "名称をツミキからツミキappへ統合" },
+      { "tag": "remove", "text": "時刻によって変わるテーマカラーの設定機能の削除" }
+    ]
+  },
+  {
+    "version": "v1.11.0", "date": "2025.4.7", "type": "minor", "open": false,
+    "summary": "独自ドメインへの移行",
+    "items": [
+      { "tag": "change", "text": "https://tsumiki.app ドメインを購入/移行" },
+      { "tag": "add", "text": "時刻によって変わるテーマカラーの設定機能の追加" }
+    ]
+  },
+  {
+    "version": "v1.05.0-v1.10.0", "date": "2025.12.14-2026.3.24", "type": "major", "open": false,
+    "summary": "同じくまとめさせてもらいます...!",
+    "items": [
+      { "tag": "add", "text": "カスタムポップアップ追加" },
+      { "tag": "add", "text": "このサイトについてポップアップを追加" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "データのエクスポート/インポートの追加" },
+      { "tag": "add", "text": "ガイドの追加" },
+      { "tag": "", "text": "---" },
+      { "tag": "change", "text": "チュートリアルの日本語の修正" },
+      { "tag": "", "text": "---" },
+      { "tag": "change", "text": "ToDoの大幅進化(繰り返し機能, 優先度追加)" },
+      { "tag": "fix", "text": "iOS等でToDoが追加できない問題の修正" },
+      { "tag": "add", "text": "グラフ機能の追加" },
+      { "tag": "", "text": "---" },
+      { "tag": "change", "text": "再生ボタンなどのアイコンの色味の調整(<a href=\"https://github.com/KokyuJene/kokyujene.github.io/commit/d35e74c8ae82b0858810775be1843f146a0ac1e7#diff-d5190905b2090c0c7a252febb3da6c70415137953b4787c02958c4d2d006540e\" target=\"_blank\" style=\"text-decoration: underline;\">違いはこちら</a>)" },
+      { "tag": "add", "text": "英語対応" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "フォント17種類追加" },
+      { "tag": "add", "text": "タイマー作動中の設定ボタン無効化を追加" },
+      { "tag": "add", "text": "サイトアクセス時のアニメーション追加" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "ToDo V2登場(カレンダー, 進行度などなど...)" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "フォーカスモード(ポモドーロテクニック)を追加" },
+      { "tag": "", "text": "---" },
+      { "tag": "change", "text": "tools.super-hiko14.com/study/に移行" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "音楽でプレイリスト機能を追加(気分で音楽のプレイリストを変更できます)" },
+      { "tag": "", "text": "メモ: ちなみにこれらは当時呼んでいたバージョンとは少し違います。ここまでは当時のバージョン名称でいう10.0までまとめました。" }
+    ]
+  },
+  {
+    "version": "v1.00.0-v1.05.0", "date": "2025.11.30-2025.12.13", "type": "major", "open": false,
+    "summary": "都合上まとめさせてもらいます...!",
+    "items": [
+      { "tag": "add", "text": "ストップウォッチ形式のタイマー機能" },
+      { "tag": "add", "text": "一時停止/再開に対応" },
+      { "tag": "add", "text": "履歴リスト" },
+      { "tag": "add", "text": "ダークモード対応" },
+      { "tag": "add", "text": "ローカルストレージ保存" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "統計機能の追加" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "設定画面の追加" },
+      { "tag": "add", "text": "テーマ6色追加" },
+      { "tag": "add", "text": "favicon - v1を追加" },
+      { "tag": "", "text": "---" },
+      { "tag": "add", "text": "音楽機能追加(ループ, 前/次, ループ, シャッフル, .mp3,.wav,.flac,.m4a,.aac,.ogg,.webm対応, 音量調整機能搭載)" },
+      { "tag": "add", "text": "ToDo機能追加(完了か否か, 削除機能のみ)" },
+      { "tag": "", "text": "---" },
+      { "tag": "change", "text": "テーマカラーCSSの整理" },
+      { "tag": "add", "text": "音楽のフォルダインポート対応" },
+      { "tag": "fix", "text": "音楽機能の動画やexeファイルをインポートできた問題を修正" },
+      { "tag": "", "text": "---" },
+      { "tag": "change", "text": "デザイン刷新(テーマカラー)" },
+      { "tag": "", "text": "メモ: ちなみにこれらは当時呼んでいたバージョンとは少し違います。ここまでは当時のバージョン名称でいう5.0までまとめました。" }
+    ]
+  }
+]
