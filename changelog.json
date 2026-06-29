@@ -1,5 +1,12 @@
 [
   {
+    "version": "v1.16.3", "date": "2026.06.30", "type": "minor", "open": true,
+    "summary": "結構修正。",
+    "items": [
+      { "tag": "change", "text": "menuに関するui刷新" }
+    ]
+  },
+  {
     "version": "v1.16.1A", "date": "2026.06.29", "type": "minor", "open": true,
     "summary": "結構修正。",
     "items": [
