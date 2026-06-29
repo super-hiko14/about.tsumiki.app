@@ -304,7 +304,11 @@ document.addEventListener('DOMContentLoaded', () => {
   bindChangelogEvents();
   initBlog();
   initHelp();
-  fetch('changelog.json')
+  var scriptTag = document.querySelector('script[src*="script.js"]');
+  var changelogUrl = scriptTag
+    ? scriptTag.src.replace(/\/script\.js(\?.*)?$/, '/changelog.json')
+    : '/changelog.json';
+  fetch(changelogUrl)
     .then(r => r.json())
     .then(data => {
       CHANGELOG_VERSIONS = data;
