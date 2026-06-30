@@ -1,7 +1,16 @@
 [
   {
+    "version": "v1.16.4", "date": "2026.06.30", "type": "minor", "open": true,
+    "summary": "nav2",
+    "items": [
+      { "tag": "change", "text": "svgを一部変更" },
+      { "tag": "change", "text": "ボトムメニューの扱いを変更" },
+      { "tag": "remove", "text": "カスタム背景を一時的に削除" }
+    ]
+  },
+  {
     "version": "v1.16.3", "date": "2026.06.30", "type": "minor", "open": true,
-    "summary": "結構修正。",
+    "summary": "上のnav",
     "items": [
       { "tag": "change", "text": "menuに関するui刷新" }
     ]
