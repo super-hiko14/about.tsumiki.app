@@ -1,6 +1,6 @@
 [
   {
-    "version": "v1.16.5", "date": "2026.06.30", "type": "minor", "open": true,
+    "version": "v1.16.5", "date": "2026.07.01", "type": "minor", "open": true,
     "summary": "全体的に整理",
     "items": [
       { "tag": "fix", "text": "コードを整理" }
