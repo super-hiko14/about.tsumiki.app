@@ -1,13 +1,30 @@
 [
   {
-    "version": "v1.16.5", "date": "2026.06.30", "type": "minor", "open": true,
+    "version": "v1.17.0", "date": "2026.06.30", "type": "minor", "open": true,
+    "summary": "超改修",
+    "items": [
+      { "tag": "add", "text": "何もない空白を右クリックでショートカットができるように" },
+      { "tag": "add", "text": "セッション情報を変更/削除できるように" },
+      { "tag": "add", "text": "暗記カードで飛ばすたびにシャッフルができるように" },
+      { "tag": "change", "text": "初回アクセス画面を少し変更" },
+      { "tag": "change", "text": "aboutポップアップを超改修" },
+      { "tag": "change", "text": "フォーカスモードのON/OFF UIを刷新" },
+      { "tag": "change", "text": "エディターモードがオフでも特定の要素を右クリックでミニメニューが出てくるように" },
+      { "tag": "fix", "text": "メニューをトップ固定の際特定の解像度で固定されない問題を修正" },
+      { "tag": "fix", "text": "リスト内で選択されているときのみのボタンが選択されていない場合でも選択されているときの状態になっていた問題を修正" },
+      { "tag": "fix", "text": "メニューカスタマイズ周辺の翻訳キーの入れ忘れの修正" },
+      { "tag": "fix", "text": "Q&Aの修正" }
+    ]
+  },
+  {
+    "version": "v1.16.5", "date": "2026.06.30", "type": "minor", "open": false,
     "summary": "全体的に整理",
     "items": [
       { "tag": "fix", "text": "コードを整理" }
     ]
   },
   {
-    "version": "v1.16.4", "date": "2026.06.30", "type": "minor", "open": true,
+    "version": "v1.16.4", "date": "2026.06.30", "type": "minor", "open": false,
     "summary": "nav2",
     "items": [
       { "tag": "change", "text": "svgを一部変更" },
@@ -16,14 +33,14 @@
     ]
   },
   {
-    "version": "v1.16.3", "date": "2026.06.30", "type": "minor", "open": true,
+    "version": "v1.16.3", "date": "2026.06.30", "type": "minor", "open": false,
     "summary": "上のnav",
     "items": [
       { "tag": "change", "text": "menuに関するui刷新" }
     ]
   },
   {
-    "version": "v1.16.1A", "date": "2026.06.29", "type": "minor", "open": true,
+    "version": "v1.16.1A", "date": "2026.06.29", "type": "minor", "open": false,
     "summary": "結構修正。",
     "items": [
       { "tag": "add", "text": "エディターモードの編集可能要素にミニプレイヤーを追加" },
@@ -33,7 +50,7 @@
     ]
   },
   {
-    "version": "v1.16.1", "date": "2026.06.29", "type": "minor", "open": true,
+    "version": "v1.16.1", "date": "2026.06.29", "type": "minor", "open": false,
     "summary": "youtube。",
     "items": [
       { "tag": "add", "text": "プレイリストにyoutube動画を追加" },
@@ -41,7 +58,7 @@
     ]
   },
   {
-    "version": "v1.16.0C", "date": "2026.06.25", "type": "minor", "open": true,
+    "version": "v1.16.0C", "date": "2026.06.25", "type": "minor", "open": false,
     "summary": "1.16.0を永遠と擦ってる気がする",
     "items": [
       { "tag": "add", "text": "フルスクリーンを追加" },
@@ -49,7 +66,7 @@
     ]
   },
   {
-    "version": "v1.16.0B", "date": "2026.06.24", "type": "minor", "open": true,
+    "version": "v1.16.0B", "date": "2026.06.24", "type": "minor", "open": false,
     "summary": "1.16.0の追加(?)",
     "items": [
       { "tag": "add", "text": "音楽ミニプレイヤーの追加" },
@@ -57,7 +74,7 @@
     ]
   },
   {
-    "version": "v1.16.0AA", "date": "2026.06.22", "type": "minor", "open": true,
+    "version": "v1.16.0AA", "date": "2026.06.22", "type": "minor", "open": false,
     "summary": "v1.16.0Aにちょっと調整を加えました",
     "items": [
       { "tag": "", "text": "v1.16.00A-mini_fix(6.21)" },
