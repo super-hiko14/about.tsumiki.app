@@ -1,6 +1,6 @@
 [
   {
-    "version": "v1.17.0", "date": "2026.06.30", "type": "minor", "open": true,
+    "version": "v1.17.0", "date": "2026.07.05", "type": "minor", "open": true,
     "summary": "超改修",
     "items": [
       { "tag": "add", "text": "何もない空白を右クリックでショートカットができるように" },
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "version": "v1.16.5", "date": "2026.06.30", "type": "minor", "open": false,
+    "version": "v1.16.5", "date": "2026.07.01", "type": "minor", "open": true,
     "summary": "全体的に整理",
     "items": [
       { "tag": "fix", "text": "コードを整理" }
