@@ -1,6 +1,6 @@
 [
   {
-    "version": "v1.18.0", "date": "2026.07.05", "type": "minor", "open": true,
+    "version": "v1.18.0", "date": "2026.07.08", "type": "minor", "open": true,
     "summary": "全力かな?",
     "items": [
       { "tag": "add", "text": "積み木機能を追加" },
@@ -213,7 +213,7 @@
     ]
   },
   {
-    "version": "v1.12.0", "date": "2026.4.25", "type": "major", "open": false,
+    "version": "v1.12.0", "date": "2026.04.25", "type": "major", "open": false,
     "summary": "favicon v2に変更したり、結構色々小さいですが変わりました。",
     "items": [
       { "tag": "change", "text": "favicon - v2に変更" },
@@ -227,7 +227,7 @@
     ]
   },
   {
-    "version": "v1.11.0", "date": "2025.4.7", "type": "minor", "open": false,
+    "version": "v1.11.0", "date": "2025.04.07", "type": "minor", "open": false,
     "summary": "独自ドメインへの移行",
     "items": [
       { "tag": "change", "text": "https://tsumiki.app ドメインを購入/移行" },
