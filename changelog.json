@@ -1,11 +1,23 @@
 [
   {
+    "version": "v1.18.0", "date": "2026.07.05", "type": "minor", "open": true,
+    "summary": "全力かな?",
+    "items": [
+      { "tag": "add", "text": "積み木機能を追加" },
+      { "tag": "add", "text": "現在時刻の表示を追加" },
+      { "tag": "change", "text": "フォーカスモードの時間設定法を調整" },
+      { "tag": "fix", "text": "数多なフォーカスモードのバグを修正" },
+      { "tag": "fix", "text": "フルスクリーン時閉じるsvgが予期せぬ色になる問題を修正" }
+    ]
+  },
+  {
     "version": "v1.17.0", "date": "2026.07.05", "type": "minor", "open": true,
     "summary": "超改修",
     "items": [
       { "tag": "add", "text": "何もない空白を右クリックでショートカットができるように" },
       { "tag": "add", "text": "セッション情報を変更/削除できるように" },
       { "tag": "add", "text": "暗記カードで飛ばすたびにシャッフルができるように" },
+      { "tag": "add", "text": "勉強時間によってカレンダーの色が変わるように" },
       { "tag": "change", "text": "初回アクセス画面を少し変更" },
       { "tag": "change", "text": "aboutポップアップを超改修" },
       { "tag": "change", "text": "フォーカスモードのON/OFF UIを刷新" },
