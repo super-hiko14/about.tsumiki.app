@@ -1,6 +1,13 @@
 [
   {
-    "version": "v1.18.0", "date": "2026.07.08", "type": "minor", "open": true,
+    "version": "v1.18.0A", "date": "2026.07.08", "type": "minor", "open": true,
+    "summary": "なんだったんあれ",
+    "items": [
+      { "tag": "fix", "text": "積み木ページのバツボタンの判定のバグを修正" }
+    ]
+  },
+  {
+    "version": "v1.18.0", "date": "2026.07.08", "type": "major", "open": true,
     "summary": "全力かな?",
     "items": [
       { "tag": "add", "text": "積み木機能を追加" },
