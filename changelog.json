@@ -1,6 +1,14 @@
 [
   {
-    "version": "v1.18.0A", "date": "2026.07.08", "type": "minor", "open": true,
+    "version": "v1.18.0B", "date": "2026.07.10", "type": "minor", "open": true,
+    "summary": "なんだったんあれ",
+    "items": [
+      { "tag": "fix", "text": "フォーカスモードが途中からの対応が不可能だった問題の修正" },
+      { "tag": "fix", "text": "積み木ページや暗記カード内で統計をスクロールできた問題の修正" }
+    ]
+  },
+  {
+    "version": "v1.18.0A", "date": "2026.07.09", "type": "minor", "open": true,
     "summary": "なんだったんあれ",
     "items": [
       { "tag": "fix", "text": "積み木ページのバツボタンの判定のバグを修正" }
@@ -18,7 +26,7 @@
     ]
   },
   {
-    "version": "v1.17.0", "date": "2026.07.05", "type": "minor", "open": true,
+    "version": "v1.17.0", "date": "2026.07.05", "type": "major", "open": true,
     "summary": "超改修",
     "items": [
       { "tag": "add", "text": "何もない空白を右クリックでショートカットができるように" },
