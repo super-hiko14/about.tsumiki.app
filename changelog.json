@@ -1,7 +1,15 @@
 [
   {
+    "version": "v1.18.0C", "date": "2026.07.10", "type": "minor", "open": true,
+    "summary": "アニメーションの調整",
+    "items": [
+      { "tag": "change", "text": "リストページ内検索のアニメーションの調整" },
+      { "tag": "fix", "text": "チェックマークアニメーションがToDo以外でも流れるよう修正" }
+    ]
+  },
+  {
     "version": "v1.18.0B", "date": "2026.07.10", "type": "minor", "open": true,
-    "summary": "なんだったんあれ",
+    "summary": "なんだったんあれ (2)",
     "items": [
       { "tag": "fix", "text": "フォーカスモードが途中からの対応が不可能だった問題の修正" },
       { "tag": "fix", "text": "積み木ページや暗記カード内で統計をスクロールできた問題の修正" }
