@@ -1,6 +1,19 @@
 [
   {
-    "version": "v1.18.0C", "date": "2026.07.10", "type": "minor", "open": true,
+    "version": "v1.18.1", "date": "2026.07.13", "type": "minor", "open": true,
+    "summary": "色々修正",
+    "items": [
+      { "tag": "add", "text": "画面解像度に余裕がある場合のmenuに関する設定項目追加" },
+      { "tag": "add", "text": "エクスポート/インポート時に項目を選べるよう追加" },
+      { "tag": "change", "text": "グラフを自作のものに" },
+      { "tag": "fix", "text": "インポート時、設定と実際に見られるものに違いが発生するバグを修正" },
+      { "tag": "fix", "text": "一部menu項目をリアルタイムで更新するよう修正" },
+      { "tag": "fix", "text": "エクスポート/インポート時youtubeに限るよう修正" },
+      { "tag": "fix", "text": "youtube動画に関する重大なバグの修正" }
+    ]
+  },
+  {
+    "version": "v1.18.0C", "date": "2026.07.11", "type": "minor", "open": true,
     "summary": "アニメーションの調整",
     "items": [
       { "tag": "change", "text": "リストページ内検索のアニメーションの調整" },
@@ -8,7 +21,7 @@
     ]
   },
   {
-    "version": "v1.18.0B", "date": "2026.07.10", "type": "minor", "open": true,
+    "version": "v1.18.0B", "date": "2026.07.11", "type": "minor", "open": true,
     "summary": "なんだったんあれ (2)",
     "items": [
       { "tag": "fix", "text": "フォーカスモードが途中からの対応が不可能だった問題の修正" },
