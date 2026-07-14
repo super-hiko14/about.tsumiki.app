@@ -1,5 +1,15 @@
 [
   {
+    "version": "v1.18.2", "date": "2026.07.14", "type": "minor", "open": true,
+    "summary": "色々修正",
+    "items": [
+      { "tag": "change", "text": "チュートリアルを刷新" },
+      { "tag": "fix", "text": "エディターモードにて[+]と現在時刻が重なる問題を修正" },
+      { "tag": "fix", "text": "エディターモードにてボトムメニューと終了が重なる仕様を修正" },
+      { "tag": "fix", "text": "チュートリアルにて、途中フォーカスされない問題を修正" }
+    ]
+  },
+  {
     "version": "v1.18.1", "date": "2026.07.13", "type": "minor", "open": true,
     "summary": "色々修正",
     "items": [
