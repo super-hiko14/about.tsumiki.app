@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ツミキappの魅力を紹介。タイマー・グラフ・音楽・ToDo が1ページに揃う、自分好みにカスタマイズできる勉強時間管理ツール。">
+<meta name="description" content="ツミキappの魅力を紹介。タイマー・グラフ・音楽・ToDo・暗記カード・積み木 が1ページに揃う、自分好みにカスタマイズできる勉強時間管理ツール。">
 <title>ツミキappの魅力 — Features — ツミキapp</title>
 <link rel="icon" href="https://tsumiki.app/favicon-v2.ico?v=2" type="image/x-icon">
 <link rel="icon" href="https://tsumiki.app/favicon-v2.png" type="image/png">
@@ -591,6 +591,143 @@ body.dark .demo-toggle.on {
   transform: translateX(20px);
 }
 
+/* Mini bar chart demo */
+.demo-chart {
+  position: relative;
+  background: var(--bg-light);
+  border-radius: 20px;
+  padding: 16px 16px 10px;
+  margin-bottom: 12px;
+  transition: background .3s;
+}
+body.dark .demo-chart {
+  background: var(--bg-dark);
+}
+.demo-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+}
+.demo-chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 5px;
+}
+.demo-chart-bar {
+  width: 100%;
+  border-radius: 8px 8px 3px 3px;
+  background: var(--primary-color);
+  opacity: .55;
+  min-height: 3px;
+  transition: height .5s, background .3s;
+}
+body.dark .demo-chart-bar {
+  background: var(--primary-color-dark, var(--primary-color));
+}
+.demo-chart-col.today .demo-chart-bar {
+  opacity: 1;
+}
+.demo-chart-col span {
+  font-size: .65rem;
+  opacity: .5;
+}
+.demo-chart-avg {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  border-top: 2px dashed var(--primary-color);
+  opacity: .5;
+  pointer-events: none;
+}
+.demo-chart-avg span {
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: .68rem;
+}
+
+/* Tsumiki (blocks) demo */
+.demo-tsumiki-canvas {
+  display: block;
+  margin: 0 auto 14px;
+  image-rendering: pixelated;
+}
+.demo-tsumiki-count {
+  text-align: center;
+  font-size: 1.15rem;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+}
+body.dark .demo-tsumiki-count {
+  color: var(--primary-color-dark, var(--primary-color));
+}
+.demo-tsumiki-note {
+  text-align: center;
+  font-size: .78rem;
+  opacity: .55;
+  margin-bottom: 14px;
+}
+
+/* Flashcard flip demo */
+.demo-fc-wrap {
+  perspective: 900px;
+  margin-bottom: 14px;
+}
+.demo-fc-card {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform .5s;
+}
+.demo-fc-card.flipped {
+  transform: rotateY(180deg);
+}
+.demo-fc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: var(--bg-light);
+  font-size: 1.05rem;
+  padding: 16px;
+  text-align: center;
+  line-height: 1.6;
+  transition: background .3s;
+}
+body.dark .demo-fc-face {
+  background: var(--bg-dark);
+}
+.demo-fc-face.back {
+  transform: rotateY(180deg);
+  color: var(--primary-color);
+}
+body.dark .demo-fc-face.back {
+  color: var(--primary-color-dark, var(--primary-color));
+}
+
+/* YouTube badge in playlist demo */
+.yt-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.yt-badge svg {
+  width: 16px;
+  height: 12px;
+  fill: #f03;
+}
+
 /* Bounce tag */
 .bounce-tag {
   display: inline-block;
@@ -653,6 +790,7 @@ body.dark .bounce-tag {
   <p><img class="hero-logo" id="heroLogo" src="https://tsumiki.app/tsumiki_logo.svg" alt="ツミキapp" style="margin-bottom:24px; width: 120px; height: auto;"></p>
   <p class="hero-sub" style="margin-bottom:32px;">
     タイマーで記録、グラフで可視化、音楽で集中、ToDoで管理。<br>
+    暗記カードで覚えて、勉強30分ごとに積み木が積み上がる。<br>
     余計なものは省き、自分好みにカスタマイズして<br>
     自分だけの勉強時間管理ツールにしよう。
   </p>
@@ -694,7 +832,9 @@ body.dark .bounce-tag {
         <li>一時停止 / 再開に対応</li>
         <li>フォーカスモード(ポモドーロ)搭載</li>
         <li>ページを閉じてもタイマーは止まらない</li>
-        <li>タイムラインバーで一時停止を可視化</li>
+        <li>自動停止(スリープタイマー)で寝落ちしても安心</li>
+        <li>フルスクリーンの巨大時計表示に切り替えられる</li>
+        <li>長いセッションの終了は確認してくれる(誤タップ防止)</li>
       </ul>
     </div>
     <div class="showcase-demo">
@@ -709,7 +849,10 @@ body.dark .bounce-tag {
           <div class="demo-timer" id="demoTimer">00:00:00</div>
           <input class="demo-group-input" type="text" placeholder="グループ名(任意)">
           <div class="demo-session" id="demoSession">開始ボタンを押して学習を始めましょう</div>
-          <button class="demo-start-btn" id="demoStartBtn">勉強開始</button>
+          <div style="display:flex; gap:8px; justify-content:center;">
+            <button class="demo-start-btn" id="demoStartBtn">勉強開始</button>
+            <button class="demo-start-btn" id="demoPauseBtn" style="display:none; background:transparent; color:var(--primary-color); border:2px solid var(--primary-color); padding:12px 24px;">一時停止</button>
+          </div>
           <div class="demo-label">※ デモです — 実際のアプリで試そう!</div>
         </div>
       </div>
@@ -729,11 +872,13 @@ body.dark .bounce-tag {
       </div>
       <p class="showcase-desc">
         フォルダをインポートして聞くだけじゃない。<br>
-        ループ、シャッフル、次/前の曲、再生/停止...一般的な機能はもちろん。<br>
-        <strong>プレイリスト</strong>で気分によって曲のリストを丸ごと変えて保存できる。
+        <strong>YouTube動画</strong>もURLを貼るだけでプレイリストに入る。<br>
+        <strong>ミニプレイヤー</strong>を画面の隅に置けば、どのページからでも操作できる。
       </p>
       <ul class="showcase-list">
-        <li>mp3 / wav / flac / m4a / aac / ogg / webm 対応</li>
+        <li>mp3 / wav / flac / m4a / aac / ogg / webm + mp4等の動画も対応</li>
+        <li>プレイリストで気分ごとに曲リストを丸ごと保存</li>
+        <li>自動停止(◯分後 / このトラックで停止)搭載</li>
         <li>タイマー停止時に音楽も自動停止</li>
         <li>再読み込み後も一回タップで再開</li>
       </ul>
@@ -763,8 +908,8 @@ body.dark .bounce-tag {
           <div style="font-size:.82rem; opacity:.5; margin-bottom:8px;">プレイリスト</div>
           <div class="demo-playlist-item active-song"><span class="song-dot"></span> Lofi Study Beats - Track 03</div>
           <div class="demo-playlist-item"><span class="song-dot"></span> Calm Piano - Rainy Day</div>
-          <div class="demo-playlist-item"><span class="song-dot"></span> Ambient Focus Flow</div>
-          <div class="demo-label" style="text-align:right;">※ デモ表示です</div>
+          <div class="demo-playlist-item"><span class="song-dot"></span> <span class="yt-badge"><svg viewBox="0 0 24 17"><path d="M23.5 2.6A3 3 0 0 0 21.4.5C19.5 0 12 0 12 0S4.5 0 2.6.5A3 3 0 0 0 .5 2.6 31 31 0 0 0 0 8.5a31 31 0 0 0 .5 5.9 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-5.9 31 31 0 0 0-.5-5.9zM9.5 12.1V4.9l6.3 3.6-6.3 3.6z"/></svg></span> 作業用BGM 1時間耐久</div>
+          <div class="demo-label" style="text-align:right;">※ YouTube動画も混ぜられる!</div>
         </div>
       </div>
     </div>
@@ -790,6 +935,8 @@ body.dark .bounce-tag {
         <li>優先度(高 / 通常 / 低)で色分け</li>
         <li>繰り返し(毎日 / 毎週 / 毎月)</li>
         <li>カレンダービューで一覧</li>
+        <li>勉強した時間でカレンダーの色が濃くなる(ヒートマップ)</li>
+        <li>日付をタップするとその日の勉強時間もわかる</li>
         <li>並び替え&フィルタリング</li>
       </ul>
     </div>
@@ -847,22 +994,39 @@ body.dark .bounce-tag {
       </div>
       <p class="showcase-desc">
         棒・折れ線・面グラフで学習時間を可視化。<br>
-        連続日数・総セッション数などの統計表示。<br>
-        タイムラインバーで一時停止の可視化まで。
+        グラフエンジンはライブラリに頼らない<strong>完全自作</strong>。<br>
+        平均線もツールチップも、テーマカラーと完全に馴染む。
       </p>
       <ul class="showcase-list">
         <li>グラフの種類 / 表示期間 / 表示場所もカスタム</li>
+        <li>平均線つき。90日を超える期間は週単位に自動集計</li>
         <li>グループ別に集計できる</li>
-        <li>JSONエクスポート / インポート対応</li>
+        <li>連続日数・総セッション数などの統計表示</li>
+        <li>タイムラインバーで一時停止まで可視化</li>
+        <li>JSONエクスポート / インポート対応(項目も選べる)</li>
       </ul>
     </div>
     <div class="showcase-demo">
       <div class="demo-frame">
         <div class="demo-inner" style="text-align:left;">
-          <div style="font-size:.82rem; opacity:.5; margin-bottom:14px;">記録リスト</div>
-          <!-- History card 1 -->
+          <div style="font-size:.82rem; opacity:.5; margin-bottom:12px;">過去7日間</div>
+          <!-- Mini bar chart (自作グラフの再現) -->
+          <div class="demo-chart">
+            <div class="demo-chart-avg" style="bottom:76px;"><span>平均 1h52m</span></div>
+            <div class="demo-chart-bars">
+              <div class="demo-chart-col"><div class="demo-chart-bar" style="height:38%;"></div><span>金</span></div>
+              <div class="demo-chart-col"><div class="demo-chart-bar" style="height:62%;"></div><span>土</span></div>
+              <div class="demo-chart-col"><div class="demo-chart-bar" style="height:24%;"></div><span>日</span></div>
+              <div class="demo-chart-col"><div class="demo-chart-bar" style="height:55%;"></div><span>月</span></div>
+              <div class="demo-chart-col"><div class="demo-chart-bar" style="height:47%;"></div><span>火</span></div>
+              <div class="demo-chart-col"><div class="demo-chart-bar" style="height:70%;"></div><span>水</span></div>
+              <div class="demo-chart-col today"><div class="demo-chart-bar" style="height:84%;"></div><span>木</span></div>
+            </div>
+          </div>
+          <div style="font-size:.82rem; opacity:.5; margin-bottom:10px;">記録リスト</div>
+          <!-- History card -->
           <div class="demo-history-card">
-            <div class="demo-history-date">2026年6月19日(木)</div>
+            <div class="demo-history-date">2026年7月17日(金)</div>
             <div class="demo-history-time">14:20 — 16:05</div>
             <div class="demo-history-duration">01:45:00</div>
             <span style="display:inline-block;padding:3px 10px;border-radius:24px;font-size:.78rem;background:var(--primary-color);color:#fff;">数学</span>
@@ -872,18 +1036,7 @@ body.dark .bounce-tag {
               <div class="demo-timeline-seg" style="left:45%;width:55%;"></div>
             </div>
           </div>
-          <!-- History card 2 -->
-          <div class="demo-history-card">
-            <div class="demo-history-date">2026年6月18日(水)</div>
-            <div class="demo-history-time">20:00 — 21:30</div>
-            <div class="demo-history-duration">01:30:00</div>
-            <span style="display:inline-block;padding:3px 10px;border-radius:24px;font-size:.78rem;background:var(--primary-color);color:#fff;">英語</span>
-            <div class="demo-timeline-scale"><span>20:00</span><span>21:30</span></div>
-            <div class="demo-timeline-track">
-              <div class="demo-timeline-seg" style="left:0;width:100%;"></div>
-            </div>
-          </div>
-          <div class="demo-label" style="text-align:right;">※ 実際の記録カードの再現</div>
+          <div class="demo-label" style="text-align:right;">※ 実際のグラフ&記録カードの再現</div>
         </div>
       </div>
     </div>
@@ -892,7 +1045,84 @@ body.dark .bounce-tag {
 
 <hr class="divider">
 
-<!-- ===== 5. CUSTOMIZE ===== -->
+<!-- ===== 5. TSUMIKI BLOCKS ===== -->
+<div class="showcase">
+  <div class="showcase-split">
+    <div class="showcase-text">
+      <div class="showcase-title">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        積み木が積み上がる
+      </div>
+      <p class="showcase-desc">
+        アプリ名の由来、ここにあり。<br>
+        <strong>勉強30分ごとに積み木が1つ</strong>、ドット絵の山になって積まれていく。<br>
+        がんばった量が、そのまま形になる。
+      </p>
+      <ul class="showcase-list">
+        <li>総勉強時間から自動で積み上がる</li>
+        <li>同じ勉強量なら毎回同じ山(決定的レンダリング)</li>
+        <li>テーマカラーに合わせて積み木の色も変わる</li>
+        <li>統計ページから1タップで開ける</li>
+      </ul>
+    </div>
+    <div class="showcase-demo">
+      <div class="demo-frame">
+        <div class="demo-inner">
+          <div style="font-size:.82rem; opacity:.5; margin-bottom:6px; text-align:left;">積み木</div>
+          <canvas class="demo-tsumiki-canvas" id="demoTsumikiCanvas"></canvas>
+          <div class="demo-tsumiki-count" id="demoTsumikiCount">24個</div>
+          <div class="demo-tsumiki-note">30分の勉強で積み木が1つ積まれます</div>
+          <button class="demo-start-btn" id="demoTsumikiBtn" style="padding:12px 28px; font-size:.92rem;">+30分 勉強したことにする</button>
+          <div class="demo-label">※ デモです — 本物は勉強しないと積めません!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 6. FLASHCARDS ===== -->
+<div class="showcase">
+  <div class="showcase-split reverse">
+    <div class="showcase-text">
+      <div class="showcase-title">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="16" height="12" rx="2"/><path d="M6 6V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/></svg></div>
+        暗記カードで覚える
+      </div>
+      <p class="showcase-desc">
+        紙の単語カードをそのままアプリに。<br>
+        デッキを作って、カードをめくって、覚えたら次へ。<br>
+        <strong>計算問題カード</strong>も作れるのはツミキappならでは。
+      </p>
+      <ul class="showcase-list">
+        <li>デッキ(グループ)ごとに作成・管理</li>
+        <li>フリップアニメーションで表裏を確認</li>
+        <li>シャッフル対応 — 飛ばすたびにシャッフルも可</li>
+        <li>数式を組み立てる計算カードも作れる</li>
+      </ul>
+    </div>
+    <div class="showcase-demo">
+      <div class="demo-frame">
+        <div class="demo-inner">
+          <div style="font-size:.82rem; opacity:.5; margin-bottom:12px; text-align:left;">英単語デッキ</div>
+          <div class="demo-fc-wrap">
+            <div class="demo-fc-card" id="demoFcCard">
+              <div class="demo-fc-face" id="demoFcFront">accomplish</div>
+              <div class="demo-fc-face back" id="demoFcBack">達成する</div>
+            </div>
+          </div>
+          <button class="demo-start-btn" id="demoFcNextBtn" style="padding:12px 28px; font-size:.92rem;">次のカード</button>
+          <div class="demo-label">※ カードをタップでめくれるよ!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== 7. CUSTOMIZE ===== -->
 <div class="showcase">
   <h2 class="section-title" style="margin-bottom:12px;">自由なカスタマイズ</h2>
   <p class="feat-sub" style="margin-bottom:40px;">
@@ -910,6 +1140,7 @@ body.dark .bounce-tag {
       <p class="showcase-desc">
         下のカラーをクリックすると、<br>
         このページ全体のアクセントカラーが変わるよ。<br>
+        (上の積み木やグラフの色まで変わる!)<br>
         実際のアプリでもこの感じで変わる!
       </p>
       <div class="theme-swatches" id="themeSwatches">
@@ -935,7 +1166,11 @@ body.dark .bounce-tag {
             <div class="demo-toggle on" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
           </div>
           <div class="demo-toggle-row">
-            <span>ToDo Ver.2</span>
+            <span>ミニプレイヤー</span>
+            <div class="demo-toggle on" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
+          </div>
+          <div class="demo-toggle-row">
+            <span>現在時刻の表示</span>
             <div class="demo-toggle on" onclick="this.classList.toggle('on');"><div class="demo-toggle-knob"></div></div>
           </div>
           <div class="demo-toggle-row">
@@ -955,7 +1190,7 @@ body.dark .bounce-tag {
 
 <hr class="divider">
 
-<!-- ===== 6. MORE FEATURES ===== -->
+<!-- ===== 8. MORE FEATURES ===== -->
 <div class="section">
   <h2 class="section-title">語りきれない便利機能</h2>
   <p class="feat-sub" style="margin-bottom:40px;">
@@ -978,8 +1213,31 @@ body.dark .bounce-tag {
         <h3>フォーカスモード(ポモドーロ)</h3>
       </div>
       <ul>
-        <li>25分集中 / 5分休憩を自動で切り替え</li>
+        <li>25分集中 / 5分休憩を自動で切り替え(時間はカスタム可)</li>
+        <li>切り替わりはブラウザ通知でお知らせ</li>
         <li>オフにすれば普通のタイマーとしても使える</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <h3>かゆいところに手が届く操作</h3>
+      </div>
+      <ul>
+        <li>設定画面に検索ボックス — 目的の設定へ一直線</li>
+        <li>何もない場所を右クリックでクイックメニュー</li>
+        <li>右クリックから勉強の開始/終了までできる</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+        <h3>エディターモード&メニュー配置</h3>
+      </div>
+      <ul>
+        <li>UI要素を直接クリックして表示/非表示をカスタム</li>
+        <li>メニューは上部固定/下部固定(アプリ風タブバー)も選べる</li>
+        <li>タブの並び順もドラッグで入れ替え</li>
       </ul>
     </div>
     <div class="card">
@@ -1010,6 +1268,8 @@ body.dark .bounce-tag {
       <ul>
         <li>タイマーごとのグループ分け</li>
         <li>総勉強時間 / 連続日数等も統計で可視化</li>
+        <li>現在時刻の時計を画面隅に表示できる</li>
+        <li>エクスポート/インポートは項目を選んでバックアップ</li>
         <li>チュートリアル搭載で初心者も安心</li>
         <li><a href="https://about.tsumiki.app/help/" class="text-link">ヘルプページ</a>にほぼ全部載っている</li>
         <li>サポート対応(<a href="mailto:info@tsumiki.app" class="text-link">info@tsumiki.app</a>)</li>
@@ -1067,23 +1327,51 @@ body.dark .bounce-tag {
     return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
   }
 
+  var pauseBtn = document.getElementById('demoPauseBtn');
+  var timerPaused = false;
+
+  function startTick() {
+    timerInterval = setInterval(function() {
+      timerSeconds++;
+      timerEl.textContent = formatTime(timerSeconds);
+    }, 1000);
+  }
+
   if (startBtn) {
     startBtn.addEventListener('click', function() {
       if (!timerRunning) {
         timerRunning = true;
+        timerPaused = false;
         startBtn.textContent = '終了';
         sessionEl.textContent = '集中...!がんばれ!';
-        timerInterval = setInterval(function() {
-          timerSeconds++;
-          timerEl.textContent = formatTime(timerSeconds);
-        }, 1000);
+        if (pauseBtn) { pauseBtn.style.display = ''; pauseBtn.textContent = '一時停止'; }
+        startTick();
       } else {
         timerRunning = false;
+        timerPaused = false;
         clearInterval(timerInterval);
         startBtn.textContent = '勉強開始';
         sessionEl.textContent = formatTime(timerSeconds) + ' — おつかれさま!';
+        if (pauseBtn) pauseBtn.style.display = 'none';
         timerSeconds = 0;
         timerEl.textContent = '00:00:00';
+      }
+    });
+  }
+
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', function() {
+      if (!timerRunning) return;
+      if (!timerPaused) {
+        timerPaused = true;
+        clearInterval(timerInterval);
+        pauseBtn.textContent = '再開';
+        sessionEl.textContent = '一時停止中 — ひとやすみ';
+      } else {
+        timerPaused = false;
+        pauseBtn.textContent = '一時停止';
+        sessionEl.textContent = '集中...!がんばれ!';
+        startTick();
       }
     });
   }
@@ -1134,8 +1422,197 @@ body.dark .bounce-tag {
       root.style.setProperty('--panel-light-border', t.panelLightBorder);
       root.style.setProperty('--panel-dark-2', t.panelDark2);
       root.style.setProperty('--panel-light-hover', t.panelLightHover);
+      if (window.__renderDemoTsumiki) window.__renderDemoTsumiki(false);
     });
   });
+
+  // ===== 積み木デモ(本家のレンダリングを移植) =====
+  (function() {
+    var canvas = document.getElementById('demoTsumikiCanvas');
+    var countEl = document.getElementById('demoTsumikiCount');
+    var addBtn = document.getElementById('demoTsumikiBtn');
+    if (!canvas || !countEl || !addBtn) return;
+
+    var blockCount = 24;
+    var animFrame = null;
+
+    // 決定的な疑似乱数(同じ個数なら毎回同じ山になる)
+    function tsumikiRand(seed) {
+      return function() {
+        seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+        var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    function computeLayout(count) {
+      var W = Math.max(4, Math.min(10, Math.ceil(Math.cbrt(count * 2.2))));
+      var rand = tsumikiRand(20260707);
+      var heights = [];
+      for (var i = 0; i < W; i++) { heights.push(new Array(W).fill(0)); }
+      var blocks = [];
+      for (var i = 0; i < count; i++) {
+        var best = null;
+        for (var k = 0; k < 3; k++) {
+          var x = Math.min(W - 1, Math.floor((rand() + rand()) / 2 * W));
+          var z = Math.min(W - 1, Math.floor((rand() + rand()) / 2 * W));
+          if (!best || heights[x][z] < heights[best.x][best.z]) best = { x: x, z: z };
+        }
+        blocks.push({ x: best.x, z: best.z, y: heights[best.x][best.z]++, tint: rand(), order: i });
+      }
+      var maxH = 1;
+      heights.forEach(function(row) { row.forEach(function(h) { if (h > maxH) maxH = h; }); });
+      blocks.sort(function(a, b) { return (a.x + a.z) - (b.x + b.z) || a.y - b.y; });
+      return { W: W, blocks: blocks, maxH: maxH };
+    }
+
+    function themeHsl() {
+      var isDark = document.body.classList.contains('dark');
+      var raw = getComputedStyle(document.body)
+        .getPropertyValue(isDark ? '--primary-color-dark' : '--primary-color').trim() || '#9db4c8';
+      var c = document.createElement('canvas');
+      c.width = c.height = 1;
+      var cx = c.getContext('2d');
+      cx.fillStyle = raw;
+      cx.fillRect(0, 0, 1, 1);
+      var d = cx.getImageData(0, 0, 1, 1).data;
+      var r = d[0] / 255, g = d[1] / 255, b = d[2] / 255;
+      var max = Math.max(r, g, b), min = Math.min(r, g, b);
+      var h = 0, s = 0, l = (max + min) / 2;
+      if (max !== min) {
+        var diff = max - min;
+        s = l > 0.5 ? diff / (2 - max - min) : diff / (max + min);
+        if (max === r) h = ((g - b) / diff + (g < b ? 6 : 0)) / 6;
+        else if (max === g) h = ((b - r) / diff + 2) / 6;
+        else h = ((r - g) / diff + 4) / 6;
+      }
+      return { h: h * 360, s: s * 100, l: l * 100 };
+    }
+
+    function render(animateNew) {
+      if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null; }
+      var layout = computeLayout(blockCount);
+      var W = layout.W, blocks = layout.blocks, maxH = layout.maxH;
+
+      var u = 6, h = 6, pad = 10;
+      var iw = 2 * W * u + pad * 2;
+      var ih = (W - 1) * u + maxH * h + h + u + pad * 2;
+      canvas.width = iw;
+      canvas.height = ih;
+      var wrap = canvas.parentElement;
+      var maxWcss = Math.max(200, Math.min(wrap.clientWidth - 8, 330));
+      var k = Math.max(1, Math.min(4, Math.floor(maxWcss / iw)));
+      canvas.style.width = (iw * k) + 'px';
+
+      var ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+      var base = themeHsl();
+      var ox = Math.round(iw / 2);
+      var oy = pad + maxH * h + u / 2;
+      function cellX(x, z) { return ox + (x - z) * u; }
+      function cellY(x, z, y) { return oy + (x + z) * (u / 2) - y * h; }
+
+      function drawGround() {
+        ctx.clearRect(0, 0, iw, ih);
+        var gl = document.body.classList.contains('dark') ? base.l * 0.45 : Math.min(94, base.l + 26);
+        ctx.fillStyle = 'hsla(' + base.h + ', ' + (base.s * 0.5) + '%, ' + gl + '%, 0.35)';
+        ctx.beginPath();
+        ctx.moveTo(cellX(0, 0), cellY(0, 0, 0) - u / 2);
+        ctx.lineTo(cellX(W - 1, 0) + u, cellY(W - 1, 0, 0));
+        ctx.lineTo(cellX(W - 1, W - 1), cellY(W - 1, W - 1, 0) + u / 2);
+        ctx.lineTo(cellX(0, W - 1) - u, cellY(0, W - 1, 0));
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      function drawCube(cx2, cy2, tint) {
+        var hue = base.h + (tint - 0.5) * 16;
+        var sat = Math.min(85, Math.max(20, base.s * 0.9 + (tint - 0.5) * 8));
+        var lig = Math.min(78, Math.max(26, base.l + (tint - 0.5) * 10));
+        ctx.fillStyle = 'hsl(' + hue + ', ' + sat + '%, ' + Math.min(92, lig + 13) + '%)';
+        ctx.beginPath();
+        ctx.moveTo(cx2, cy2 - u / 2); ctx.lineTo(cx2 + u, cy2); ctx.lineTo(cx2, cy2 + u / 2); ctx.lineTo(cx2 - u, cy2);
+        ctx.closePath(); ctx.fill();
+        ctx.fillStyle = 'hsl(' + hue + ', ' + sat + '%, ' + lig + '%)';
+        ctx.beginPath();
+        ctx.moveTo(cx2 - u, cy2); ctx.lineTo(cx2, cy2 + u / 2); ctx.lineTo(cx2, cy2 + u / 2 + h); ctx.lineTo(cx2 - u, cy2 + h);
+        ctx.closePath(); ctx.fill();
+        ctx.fillStyle = 'hsl(' + hue + ', ' + sat + '%, ' + Math.max(14, lig - 15) + '%)';
+        ctx.beginPath();
+        ctx.moveTo(cx2 + u, cy2); ctx.lineTo(cx2, cy2 + u / 2); ctx.lineTo(cx2, cy2 + u / 2 + h); ctx.lineTo(cx2 + u, cy2 + h);
+        ctx.closePath(); ctx.fill();
+        ctx.fillStyle = 'hsl(' + hue + ', ' + sat + '%, ' + Math.min(96, lig + 24) + '%)';
+        ctx.fillRect(cx2 - 2, cy2 - 1, 2, 1);
+      }
+
+      countEl.textContent = blockCount + '個';
+
+      var dropDur = 260;
+      var start = performance.now();
+
+      function frame(now) {
+        var elapsed = now - start;
+        drawGround();
+        var pending = false;
+        for (var i = 0; i < blocks.length; i++) {
+          var b = blocks[i];
+          var isNew = animateNew && b.order === blockCount - 1;
+          var p = isNew ? Math.min(1, elapsed / dropDur) : 1;
+          if (p < 1) pending = true;
+          var ease = 1 - (1 - p) * (1 - p);
+          var dropOffset = Math.round((1 - ease) * 4 * h);
+          drawCube(cellX(b.x, b.z), cellY(b.x, b.z, b.y) - dropOffset, b.tint);
+        }
+        animFrame = pending ? requestAnimationFrame(frame) : null;
+      }
+      if (animateNew) animFrame = requestAnimationFrame(frame);
+      else frame(start);
+    }
+
+    addBtn.addEventListener('click', function() {
+      if (blockCount < 500) blockCount++;
+      render(true);
+    });
+
+    window.__renderDemoTsumiki = render;
+    render(false);
+
+    // ダーク/ライト切替(body class 変更)でも色を追従
+    new MutationObserver(function() { render(false); })
+      .observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    window.addEventListener('resize', function() { render(false); });
+  })();
+
+  // ===== 暗記カードデモ =====
+  (function() {
+    var card = document.getElementById('demoFcCard');
+    var front = document.getElementById('demoFcFront');
+    var back = document.getElementById('demoFcBack');
+    var nextBtn = document.getElementById('demoFcNextBtn');
+    if (!card || !front || !back || !nextBtn) return;
+
+    var cards = [
+      ['accomplish', '達成する'],
+      ['persistence', '粘り強さ'],
+      ['12 × 12 =', '144'],
+      ['concentrate', '集中する']
+    ];
+    var idx = 0;
+
+    card.addEventListener('click', function() {
+      card.classList.toggle('flipped');
+    });
+
+    nextBtn.addEventListener('click', function() {
+      card.classList.remove('flipped');
+      idx = (idx + 1) % cards.length;
+      setTimeout(function() {
+        front.textContent = cards[idx][0];
+        back.textContent = cards[idx][1];
+      }, 250);
+    });
+  })();
 })();
 </script>
 </body>
