@@ -1,5 +1,16 @@
 [
   {
+    "version": "v1.19.2", "date": "2026.07.24", "type": "minor", "open": true,
+    "summary": "概要: テキスト記入欄, グループ名, グラフ, UIの調整",
+    "items": [
+      { "tag": "add", "text": "設定内検索, グループ名記入に記入内容を破棄するバツボタンを追加" },
+      { "tag": "change", "text": "グループ名を表示/非表示にできるように" },
+      { "tag": "change", "text": "グラフの平均の描画を調整" },
+      { "tag": "change", "text": "微妙な解像度の際少し不自然に感じる問題を修正" },
+      { "tag": "fix", "text": "エディターモード時、リストが非対応だった問題を修正" }
+    ]
+  },
+  {
     "version": "v1.19.1", "date": "2026.07.24", "type": "minor", "open": true,
     "summary": "概要: menu, 設定内調整",
     "items": [
