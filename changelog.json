@@ -1,6 +1,6 @@
 [
   {
-    "version": "v1.19.2", "date": "2026.07.24", "type": "minor", "open": true,
+    "version": "v1.19.2", "date": "2026.08.02", "type": "minor", "open": true,
     "summary": "概要: テキスト記入欄, グループ名, グラフ, UIの調整",
     "items": [
       { "tag": "add", "text": "設定内検索, グループ名記入に記入内容を破棄するバツボタンを追加" },
