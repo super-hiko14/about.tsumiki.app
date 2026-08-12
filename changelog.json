@@ -1,5 +1,12 @@
 [
   {
+    "version": "v1.19.3", "date": "2026.08.13", "type": "minor", "open": true,
+    "summary": "概要: セーフティフィルター",
+    "items": [
+      { "tag": "add", "text": "セーフティフィルターを追加" }
+    ]
+  },
+  {
     "version": "v1.19.2", "date": "2026.08.02", "type": "minor", "open": true,
     "summary": "概要: テキスト記入欄, グループ名, グラフ, UIの調整",
     "items": [
