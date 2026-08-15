@@ -1,5 +1,15 @@
 [
   {
+    "version": "v1.19.4", "date": "2026.08.13", "type": "minor", "open": true,
+    "summary": "概要: セーフティフィルター",
+    "items": [
+      { "tag": "change", "text": "セーフティフィルターのデザインを調整" },
+      { "tag": "change", "text": "一部当たり判定調整" },
+      { "tag": "change", "text": "ミニプレイヤーのデザインを調整" },
+      { "tag": "change", "text": "一部翻訳調整" }
+    ]
+  },
+  {
     "version": "v1.19.3", "date": "2026.08.13", "type": "minor", "open": true,
     "summary": "概要: セーフティフィルター",
     "items": [
