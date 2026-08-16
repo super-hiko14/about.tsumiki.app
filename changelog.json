@@ -1,6 +1,6 @@
 [
   {
-    "version": "v1.19.4", "date": "2026.08.13", "type": "minor", "open": true,
+    "version": "v1.19.4", "date": "2026.08.15", "type": "minor", "open": true,
     "summary": "概要: セーフティフィルター",
     "items": [
       { "tag": "change", "text": "セーフティフィルターのデザインを調整" },
