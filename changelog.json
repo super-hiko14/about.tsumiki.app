@@ -1,7 +1,14 @@
 [
   {
+    "version": "v1.19.5", "date": "2026.08.15", "type": "minor", "open": true,
+    "summary": "概要: エディターモードのリスト修正",
+    "items": [
+      { "tag": "fix", "text": "エディターモードにてリストを非表示にする際リストボタンではなくリストを非表示にしていた問題の修正" }
+    ]
+  },
+  {
     "version": "v1.19.4", "date": "2026.08.15", "type": "minor", "open": true,
-    "summary": "概要: セーフティフィルター",
+    "summary": "概要: 微調整",
     "items": [
       { "tag": "change", "text": "セーフティフィルターのデザインを調整" },
       { "tag": "change", "text": "一部当たり判定調整" },
