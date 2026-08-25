@@ -1,5 +1,12 @@
 [
   {
+    "version": "v1.19.6", "date": "2026.08.15", "type": "minor", "open": true,
+    "summary": "概要: エディターモードのリスト修正",
+    "items": [
+      { "tag": "fix", "text": "エディターモードにタイマーと統計の非表示項目を追加" }
+    ]
+  },
+  {
     "version": "v1.19.5", "date": "2026.08.15", "type": "minor", "open": true,
     "summary": "概要: エディターモードのリスト修正",
     "items": [
