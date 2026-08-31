@@ -1,5 +1,13 @@
 [
   {
+    "version": "v1.20.0", "date": "2026.08.31", "type": "major", "open": true,
+    "summary": "概要: グループ改修, 自動停止のカスタマイズ",
+    "items": [
+      { "tag": "add", "text": "自動停止の三点マークの項目を非表示にできる設定項目を追加" },
+      { "tag": "change", "text": "グループ機能を改修(設定で旧に変更可能)" }
+    ]
+  },
+  {
     "version": "v1.19.6", "date": "2026.08.15", "type": "minor", "open": true,
     "summary": "概要: エディターモードのリスト修正",
     "items": [
