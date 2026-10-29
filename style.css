@@ -326,7 +326,7 @@ body.dark .badge-major { color:var(--primary-color-dark); }
 
 .cl-body { display:none; padding:0 26px 24px; border-top:1px solid var(--panel-light-border); }
 body.dark .cl-body { border-color:var(--panel-dark-2); }
-.cl-entry.open .cl-body { display:block; }
+.cl-entry.open .cl-body, .cl-entry.closing .cl-body { display:block; }
 
 .cl-summary { font-size:.88rem; opacity:.7; line-height:1.75; margin:16px 0 20px; }
 
@@ -343,6 +343,24 @@ body.dark .cl-body { border-color:var(--panel-dark-2); }
 .tag-remove { background:var(--tag-remove-bg); color:var(--tag-remove); }
 
 .cl-item-text { opacity:.8; }
+
+/* 同じ版をまとめたカード: 中の版を小さなタブで切り替える */
+.cl-version-sub { font-size:.8rem; opacity:.5; margin-left:4px; }
+.cl-subtabs { display:flex; flex-wrap:wrap; gap:6px; margin-top:18px; }
+.cl-subtab {
+  font:inherit; font-size:.78rem; color:inherit; cursor:pointer;
+  min-width:34px; padding:5px 12px; border:none; border-radius:999px;
+  background:var(--panel-light-hover); opacity:.75; transition:all .2s;
+  font-variant-numeric:tabular-nums;
+}
+body.dark .cl-subtab { background:var(--panel-dark-2); }
+.cl-subtab:hover { opacity:1; }
+.cl-subtab.active { background:var(--primary-color); color:#fff; opacity:1; }
+body.dark .cl-subtab.active { background:var(--primary-color-dark); }
+.cl-subpanel[hidden] { display:none; }
+.cl-subhead { display:flex; align-items:baseline; gap:10px; margin-top:18px; font-size:.92rem; letter-spacing:.3px; }
+.cl-subhead-date { font-size:.78rem; opacity:.5; font-variant-numeric:tabular-nums; }
+.cl-subhead + .cl-summary { margin-top:6px; }
 
 /* LEGEND */
 .legend {

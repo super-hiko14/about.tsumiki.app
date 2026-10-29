@@ -253,42 +253,139 @@ function changelogTagLabel(tag) {
   return { add:'追加', fix:'修正', change:'変更', remove:'削除' }[tag] || tag;
 }
 
+// v1.21.0A のように末尾に英字が付いた版は、元の版(v1.21.0)と1枚のカードにまとめる
+function changelogBaseVersion(version) {
+  const m = /^(v\d+(?:\.\d+)+)[A-Z]+$/.exec(version);
+  return m ? m[1] : version;
+}
+
+function changelogGroups() {
+  const groups = [];
+  const byBase = {};
+  CHANGELOG_VERSIONS.forEach(v => {
+    const base = changelogBaseVersion(v.version);
+    if (!byBase[base]) {
+      byBase[base] = { base, versions: [] };
+      groups.push(byBase[base]);
+    }
+    byBase[base].versions.push(v);
+  });
+  // カードの中は古い順(元の版 → A → B …)に並べる
+  groups.forEach(g => g.versions.reverse());
+  return groups;
+}
+
+function changelogItemsHtml(v) {
+  return `
+    <p class="cl-summary">${v.summary}</p>
+    <div class="cl-items">
+      ${v.items.map(item => `
+        <div class="cl-item">
+          <span class="cl-tag ${changelogTagClass(item.tag)}">${changelogTagLabel(item.tag)}</span>
+          <span class="cl-item-text">${item.text}</span>
+        </div>
+      `).join('')}
+    </div>`;
+}
+
 function renderChangelog() {
   const tl = document.getElementById('timeline');
   if (!tl) return;
-  tl.innerHTML = CHANGELOG_VERSIONS.map((v, i) => `
-    <div class="cl-entry${v.open ? ' open' : ''}" id="entry-${i}">
+  tl.innerHTML = changelogGroups().map((g, i) => {
+    const list = g.versions;
+    const latest = list[list.length - 1];
+    const main = list.find(v => v.version === g.base) || list[0];
+    const open = list.some(v => v.open);
+    if (list.length === 1) {
+      return `
+    <div class="cl-entry${open ? ' open' : ''}" id="entry-${i}">
       <div class="cl-header" data-index="${i}">
-        <span class="cl-version">${v.version}</span>
-        <span class="cl-badge ${changelogBadgeClass(v.type)}">${changelogBadgeLabel(v.type)}</span>
-        <span class="cl-date">${v.date}</span>
+        <span class="cl-version">${main.version}</span>
+        <span class="cl-badge ${changelogBadgeClass(main.type)}">${changelogBadgeLabel(main.type)}</span>
+        <span class="cl-date">${main.date}</span>
+        <svg class="cl-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cl-body">${changelogItemsHtml(main)}
+      </div>
+    </div>`;
+    }
+    const subLabel = v => v.version === g.base ? g.base.replace(/^v/, '') : v.version.slice(g.base.length);
+    const last = list.length - 1;
+    return `
+    <div class="cl-entry cl-group${open ? ' open' : ''}" id="entry-${i}">
+      <div class="cl-header" data-index="${i}">
+        <span class="cl-version">${g.base}<span class="cl-version-sub">〜${subLabel(latest)}</span></span>
+        <span class="cl-badge ${changelogBadgeClass(main.type)}">${changelogBadgeLabel(main.type)}</span>
+        <span class="cl-date">${latest.date}</span>
         <svg class="cl-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="cl-body">
-        <p class="cl-summary">${v.summary}</p>
-        <div class="cl-items">
-          ${v.items.map(item => `
-            <div class="cl-item">
-              <span class="cl-tag ${changelogTagClass(item.tag)}">${changelogTagLabel(item.tag)}</span>
-              <span class="cl-item-text">${item.text}</span>
-            </div>
-          `).join('')}
+        <div class="cl-subtabs" role="tablist">
+          ${list.map((v, j) => `<button type="button" class="cl-subtab${j === last ? ' active' : ''}" role="tab" aria-selected="${j === last}" data-index="${i}" data-sub="${j}">${subLabel(v)}</button>`).join('')}
         </div>
+        ${list.map((v, j) => `
+        <div class="cl-subpanel" data-sub="${j}"${j === last ? '' : ' hidden'}>
+          <div class="cl-subhead"><span>${v.version}</span><span class="cl-subhead-date">${v.date}</span></div>
+          ${changelogItemsHtml(v)}
+        </div>`).join('')}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function bindChangelogEvents() {
   const timeline = document.getElementById('timeline');
   if (!timeline) return;
   timeline.addEventListener('click', (e) => {
+    const tab = e.target.closest('.cl-subtab');
+    if (tab) {
+      const entry = document.getElementById(`entry-${tab.getAttribute('data-index')}`);
+      if (!entry) return;
+      const sub = tab.getAttribute('data-sub');
+      entry.querySelectorAll('.cl-subtab').forEach(t => {
+        const on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on);
+      });
+      entry.querySelectorAll('.cl-subpanel').forEach(p => { p.hidden = p.getAttribute('data-sub') !== sub; });
+      return;
+    }
     const header = e.target.closest('.cl-header');
     if (!header) return;
     const index = header.getAttribute('data-index');
     const entry = document.getElementById(`entry-${index}`);
-    if (entry) entry.classList.toggle('open');
+    if (entry) toggleChangelogEntry(entry);
   });
+}
+
+// カードの中身を、高さを伸び縮みさせて開け閉めする
+function toggleChangelogEntry(entry) {
+  const body = entry.querySelector('.cl-body');
+  const opening = !entry.classList.contains('open');
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!body || typeof body.animate !== 'function' || reduce) {
+    entry.classList.toggle('open', opening);
+    return;
+  }
+  // 途中で押し直しても、今見えている高さから続ける
+  const cs = getComputedStyle(body);
+  const from = { height: cs.display === 'none' ? '0px' : body.getBoundingClientRect().height + 'px', paddingBottom: cs.display === 'none' ? '0px' : cs.paddingBottom, opacity: cs.display === 'none' ? 0 : cs.opacity };
+  if (body._anim) body._anim.cancel();
+  entry.classList.toggle('open', opening);
+  entry.classList.toggle('closing', !opening);
+  const full = getComputedStyle(body).paddingBottom;
+  const to = opening
+    ? { height: body.getBoundingClientRect().height + 'px', paddingBottom: full, opacity: 1 }
+    : { height: '0px', paddingBottom: '0px', opacity: 0 };
+  body.style.overflow = 'hidden';
+  const anim = body.animate([from, to], { duration: 280, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' });
+  body._anim = anim;
+  anim.onfinish = () => {
+    if (body._anim !== anim) return;
+    body._anim = null;
+    entry.classList.remove('closing');
+    body.style.overflow = '';
+  };
 }
 
 function bindThemeButton() {
