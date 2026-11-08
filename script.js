@@ -44,6 +44,41 @@ function toggleTheme() {
   localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
 }
 
+// タグの名前(posts.json で tagLabel を省略したときに使う)
+const BLOG_TAG_LABELS = { update: 'アップデート', tips: '使い方', dev: '開発日誌' };
+const BLOG_NEW_DAYS = 14;
+
+function parseBlogDate(str) {
+  const m = /^(\d{4})[.\/-](\d{1,2})[.\/-](\d{1,2})/.exec(String(str || ''));
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+}
+
+function isBlogPostNew(post) {
+  const d = parseBlogDate(post.date);
+  if (!d) return false;
+  const age = Date.now() - d.getTime();
+  return age >= 0 && age < BLOG_NEW_DAYS * 86400000;
+}
+
+function stripTags(html) {
+  return String(html || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+}
+
+// posts.json の1記事を、表示に使う形にそろえる(省略できる項目をここで埋める)
+function normalizeBlogPost(p) {
+  const post = Object.assign({}, p);
+  post.tagLabel = post.tagLabel || BLOG_TAG_LABELS[post.tag] || 'お知らせ';
+  if (!post.excerpt) {
+    // 本文の最初の段落から作る(記事の中では本文と重なるので出さない)
+    const html = getBlogBodyHtml(post);
+    const firstP = /<p[^>]*>([\s\S]*?)<\/p>/.exec(html);
+    const text = stripTags(firstP ? firstP[1] : html);
+    post.autoExcerpt = true;
+    post.excerpt = text.length > 80 ? text.slice(0, 80) + '…' : text;
+  }
+  return post;
+}
+
 function renderBlogPosts(tag) {
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
@@ -63,13 +98,14 @@ function renderBlogPosts(tag) {
         <div class="blog-header" data-post-index="${postIndex}">
           <div class="blog-head-main">
             <div class="blog-meta">
-              <span class="blog-tag">${p.tagLabel || ''}</span>
+              ${isBlogPostNew(p) ? '<span class="blog-new">NEW</span>' : ''}
+              <span class="blog-tag">${p.tagLabel}</span>
               <span class="blog-date">${p.date || ''}</span>
             </div>
             <div class="blog-title">${p.title}</div>
             <div class="blog-excerpt">${p.excerpt || ''}</div>
           </div>
-          <button class="blog-read-btn" aria-label="${p.title} を読む">
+          <button class="blog-read-btn" aria-label="${stripTags(p.title)} を読む">
             読む
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
@@ -79,14 +115,72 @@ function renderBlogPosts(tag) {
   }).join('');
 }
 
-function getBlogBodyHtml(post) {
-  if (post.contentHtml) return post.contentHtml;
-  return (post.content || []).map(line => {
-    const isFootnote = /"^[¹²³⁴⁵⁶⁷⁸⁹*†‡§]"/.test(line);
-    return `<p${isFootnote ? ' class="footnote"' : ''}>${line}</p>`;
+// 記事のないタグは隠し、あるタグには件数を出す
+function updateBlogTagFilter() {
+  const tagFilter = document.getElementById('tagFilter');
+  if (!tagFilter) return;
+  tagFilter.querySelectorAll('.nav-pill[data-tag]').forEach(btn => {
+    const tag = btn.getAttribute('data-tag');
+    const n = tag === 'all' ? blogPosts.length : blogPosts.filter(p => p.tag === tag).length;
+    if (tag !== 'all') btn.hidden = n === 0;
+    let count = btn.querySelector('.tag-count');
+    if (!count) {
+      count = document.createElement('span');
+      count.className = 'tag-count';
+      btn.appendChild(count);
+    }
+    count.textContent = n;
+  });
+}
+
+// 本文の行の中: **太字** / [文字](URL) / `コード`
+function blogInline(text) {
+  return String(text)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
+      const external = /^https?:\/\//.test(url) && !/^https?:\/\/(about\.)?tsumiki\.app/.test(url);
+      return `<a href="${url}"${external ? ' target="_blank" rel="noopener"' : ''}>${label}</a>`;
+    });
+}
+
+// "body" を HTML にする。空行で段落を分ける
+//   ## 見出し / ### 小見出し / - 箇条書き / 1. 番号 / > 引用 / ![説明](画像のURL)
+function blogMarkdownToHtml(src) {
+  const blocks = String(src || '').replace(/\r\n?/g, '\n').split(/\n{2,}/);
+  return blocks.map(block => {
+    const lines = block.split('\n').filter(l => l.trim() !== '');
+    if (!lines.length) return '';
+    const first = lines[0].trim();
+    if (/^###\s+/.test(first)) return `<h4>${blogInline(first.replace(/^###\s+/, ''))}</h4>`;
+    if (/^##\s+/.test(first)) return `<h3>${blogInline(first.replace(/^##\s+/, ''))}</h3>`;
+    const img = /^!\[([^\]]*)\]\(([^)\s]+)\)$/.exec(first);
+    if (img && lines.length === 1) {
+      return `<figure><img src="${img[2]}" alt="${img[1]}" loading="lazy">${img[1] ? `<figcaption>${img[1]}</figcaption>` : ''}</figure>`;
+    }
+    if (lines.every(l => /^\s*[-・]\s+/.test(l))) {
+      return '<ul>' + lines.map(l => `<li>${blogInline(l.replace(/^\s*[-・]\s+/, ''))}</li>`).join('') + '</ul>';
+    }
+    if (lines.every(l => /^\s*\d+[.)]\s+/.test(l))) {
+      return '<ol>' + lines.map(l => `<li>${blogInline(l.replace(/^\s*\d+[.)]\s+/, ''))}</li>`).join('') + '</ol>';
+    }
+    if (lines.every(l => /^\s*>\s?/.test(l))) {
+      return `<blockquote>${lines.map(l => blogInline(l.replace(/^\s*>\s?/, ''))).join('<br>')}</blockquote>`;
+    }
+    const isFootnote = /^([¹²³⁴⁵⁶⁷⁸⁹†‡§]|\*\s)/.test(first);
+    return `<p${isFootnote ? ' class="footnote"' : ''}>${lines.map(blogInline).join('<br>')}</p>`;
   }).join('');
 }
 
+function getBlogBodyHtml(post) {
+  if (post.contentHtml) return post.contentHtml;
+  if (typeof post.body === 'string') return blogMarkdownToHtml(post.body);
+  if (Array.isArray(post.body)) return blogMarkdownToHtml(post.body.join('\n'));
+  return (post.content || []).map(line => {
+    const isFootnote = /^([¹²³⁴⁵⁶⁷⁸⁹†‡§]|\*\s)/.test(line);
+    return `<p${isFootnote ? ' class="footnote"' : ''}>${line}</p>`;
+  }).join('');
+}
 
 function resolveBlogPostByParam(param) {
   const normalized = (param || '').trim();
@@ -131,18 +225,22 @@ function openBlogModal(post, index, updateUrl) {
   if (tag)    tag.textContent    = post.tagLabel || '';
   if (date)   date.textContent   = post.date || '';
   if (title)  title.textContent  = post.title || '';
-  if (excerpt) excerpt.textContent = post.excerpt || '';
+  if (excerpt) {
+    excerpt.textContent = post.autoExcerpt ? '' : (post.excerpt || '');
+    excerpt.hidden = !excerpt.textContent;
+  }
   if (body)   body.innerHTML     = getBlogBodyHtml(post);
  
   // 戻るボタンにアイコンを追加（初回のみ）
   if (closeBtn && !closeBtn.querySelector('svg')) {
-    closeBtn.innerHTML =
+    modal.querySelectorAll('.blog-modal-close').forEach(btn => { btn.innerHTML =
       `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-       </svg>一覧へ戻る`;
+       </svg>一覧へ戻る`; });
   }
  
-  if (post.title) document.title = `${post.title} — Blog — ツミキapp`;
+  renderBlogModalNav(index);
+  if (post.title) document.title = `${stripTags(post.title)} — Blog — ツミキapp`;
  
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
@@ -155,6 +253,19 @@ function openBlogModal(post, index, updateUrl) {
   }
 }
 
+
+// 記事の下の「前の記事 / 次の記事」(一覧と同じ、新しい順)
+function renderBlogModalNav(index) {
+  const nav = document.getElementById('blogModalNav');
+  if (!nav) return;
+  const newer = blogPosts[index - 1];
+  const older = blogPosts[index + 1];
+  const btn = (post, i, cls, label) => post
+    ? `<button type="button" class="blog-nav-btn ${cls}" data-post-index="${i}"><span class="blog-nav-label">${label}</span><span class="blog-nav-title">${post.title}</span></button>`
+    : '';
+  nav.innerHTML = btn(older, index + 1, 'prev', '← 前の記事') + btn(newer, index - 1, 'next', '次の記事 →');
+  nav.hidden = !newer && !older;
+}
 
 function closeBlogModal(updateUrl) {
   const modal = document.getElementById('blogModal');
@@ -194,12 +305,17 @@ async function initBlog() {
     const res = await fetch(postsUrl, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    blogPosts = Array.isArray(data) ? data : (data.posts || []);
+    // 日付の新しい順に並べ、省略された項目を埋める
+    blogPosts = (Array.isArray(data) ? data : (data.posts || []))
+      .filter(p => p && p.title && !p.draft)
+      .map(normalizeBlogPost)
+      .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
     blogLoadError = '';
   } catch (err) {
     blogPosts = [];
     blogLoadError = 'posts.json の読み込みに失敗しました。URLを確認してください。';
   }
+  updateBlogTagFilter();
   renderBlogPosts(blogCurrentTag);
   openBlogModalFromQuery();
 }
@@ -230,7 +346,23 @@ function bindBlogEvents() {
   if (modal) {
     modal.addEventListener('click', (e) => {
       const closer = e.target.closest('[data-modal-close="true"]');
-      if (closer) closeBlogModal(true);
+      if (closer) { closeBlogModal(true); return; }
+      const navBtn = e.target.closest('.blog-nav-btn');
+      if (navBtn) {
+        const i = Number(navBtn.getAttribute('data-post-index'));
+        if (blogPosts[i]) openBlogModal(blogPosts[i], i, true);
+        return;
+      }
+      const copyBtn = e.target.closest('#blogCopyLink');
+      if (copyBtn && navigator.clipboard) {
+        navigator.clipboard.writeText(location.href).then(() => {
+          const label = copyBtn.querySelector('span');
+          if (!label) return;
+          label.textContent = 'コピーしました';
+          clearTimeout(copyBtn._t);
+          copyBtn._t = setTimeout(() => { label.textContent = 'リンクをコピー'; }, 1800);
+        });
+      }
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeBlogModal(true);
@@ -410,9 +542,50 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       CHANGELOG_VERSIONS = data;
       renderChangelog();
+      renderHomeNewsUpdate();
     })
     .catch(() => renderChangelog());
+  initHomeNewsBlog(scriptTag ? scriptTag.src.replace(/\/script\.js(\?.*)?$/, '/blog/posts.json') : '/blog/posts.json');
 });
+
+// ── トップの「お知らせ」: 最新のアップデートとブログを自動で出す ──
+function setHomeNews(el, title, date, href) {
+  if (!el) return;
+  const t = el.querySelector('.news-title');
+  if (t) t.innerHTML = title;
+  if (date) {
+    let d = el.querySelector('.news-date');
+    if (!d) {
+      d = document.createElement('span');
+      d.className = 'news-date';
+      el.insertBefore(d, el.querySelector('.news-arrow'));
+    }
+    d.textContent = date;
+  }
+  if (href) el.href = href;
+}
+
+function renderHomeNewsUpdate() {
+  const el = document.getElementById('homeNewsUpdate');
+  const v = CHANGELOG_VERSIONS[0];
+  if (!el || !v) return;
+  setHomeNews(el, `${v.version} — ${String(v.summary || '').replace(/^概要[:：]\s*/, '')}`, v.date);
+}
+
+async function initHomeNewsBlog(url) {
+  const el = document.getElementById('homeNewsBlog');
+  if (!el) return;
+  try {
+    const res = await fetch(url, { cache: 'no-store' });
+    const data = await res.json();
+    const post = (Array.isArray(data) ? data : (data.posts || []))
+      .filter(p => p && p.title && !p.draft)
+      .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))[0];
+    if (!post) return;
+    const param = post.id ? String(post.id) : '';
+    setHomeNews(el, post.title, post.date, param ? `https://about.tsumiki.app/blog/?post=${encodeURIComponent(param)}` : null);
+  } catch (e) { /* 読み込めなければ「ブログを見る」のまま */ }
+}
 
 const HELP_QA = [
   {cat:'タイマー', q:'大前提、どうやって使うの?', a:'まず最初にアクセスしたときに大きい00:00:00と色々なnavや入力欄、フォーカスモードのON/OFF、一時停止、テーマカラー色のタイマースタートボタンが目立つでしょう。タイマースタートボタンを押しスタートすると中央で目立っている00:00:00がストップウォッチとして動き始めます。タイマースタートボタンの上にある一時停止ボタンから一時停止したり、テキスト入力欄でグループ名を記入して後の教科のメモにしたりできます。フォーカスモードをONにすると、集中時間と休憩時間を自動で切り替えることができます。テーマカラーは設定から変えられます。'},
@@ -518,6 +691,7 @@ function initHelp() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const elements = document.querySelectorAll('.tuuti');
+  if (!elements.length) return; // 通知音はヘルプページにだけある
   const audio = new Audio('tuuti.wav');
 
   elements.forEach(element => {

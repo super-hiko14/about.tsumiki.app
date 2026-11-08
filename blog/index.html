@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="../style.css">
 </head>
 <body class="light">
+<script>try{if(localStorage.getItem('tsumiki_theme')==='dark')document.body.className='dark';}catch(e){}</script>
 
 <div class="top-buttons">
   <button class="icon-btn" id="themeToggle" aria-label="テーマ切り替え">
@@ -63,6 +64,10 @@
     <div class="blog-modal-card" role="dialog" aria-modal="true" aria-labelledby="blogModalTitle">
       <div class="blog-modal-top">
         <button class="blog-modal-close" type="button" aria-label="一覧へ戻る" data-modal-close="true">一覧へ戻る</button>
+        <button class="blog-copy-btn" type="button" id="blogCopyLink">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span>リンクをコピー</span>
+        </button>
       </div>
       <div class="blog-modal-head">
         <span class="blog-modal-tag" id="blogModalTag"></span>
@@ -71,6 +76,10 @@
       <h2 class="blog-modal-title" id="blogModalTitle"></h2>
       <p class="blog-modal-excerpt" id="blogModalExcerpt"></p>
       <div class="blog-modal-body" id="blogModalBody"></div>
+      <div class="blog-modal-nav" id="blogModalNav"></div>
+      <div class="blog-modal-back">
+        <button class="blog-modal-close" type="button" data-modal-close="true">一覧へ戻る</button>
+      </div>
     </div>
   </div>
 

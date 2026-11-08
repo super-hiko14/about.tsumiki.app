@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="light">
+<script>try{if(localStorage.getItem('tsumiki_theme')==='dark')document.body.className='dark';}catch(e){}</script>
 
 <!-- テーマ切り替え -->
 <div class="top-buttons">
@@ -31,7 +32,7 @@
 </div>
 
   <!-- NAV -->
-  <nav style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:28px 20px 0;">
+  <nav class="top-nav" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:28px 20px 0;">
     <span class="nav-pill active">HOME</span>
     <a href="https://about.tsumiki.app/blog/" class="nav-pill">BLOG</a>
     <a href="https://about.tsumiki.app/changelog/" class="nav-pill">CHANGELOG</a>
@@ -47,6 +48,7 @@
     <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
     アプリを使う
   </a>
+  <p class="hero-note">無料・登録不要・広告なし。<a href="#start" class="text-link">はじめかた</a></p>
 </section>
 
 <hr class="divider">
@@ -54,84 +56,141 @@
 <!-- STATS -->
 <div class="section" style="padding-bottom:0">
   <div class="stats">
+    <div class="stat-card"><div class="stat-val">0円</div><div class="stat-lbl">広告もなし</div></div>
+    <div class="stat-card"><div class="stat-val">登録不要</div><div class="stat-lbl">開くだけで使える</div></div>
     <div class="stat-card"><div class="stat-val">7色</div><div class="stat-lbl">テーマカラー</div></div>
-    <div class="stat-card"><div class="stat-val">17+</div><div class="stat-lbl">フォント種類</div></div>
-    <div class="stat-card"><div class="stat-val">1ページ</div><div class="stat-lbl">すべてが揃う</div></div>
   </div>
 </div>
 
+<!-- はじめかた -->
+<div class="section" id="start" style="padding-top:0">
+  <h2 class="section-title">はじめかた</h2>
+  <div class="steps">
+    <div class="step"><span class="step-num">1</span><h3>開く</h3><p><a href="https://tsumiki.app/" class="text-link">tsumiki.app</a> をブラウザで開きます。インストールも登録もいりません。</p></div>
+    <div class="step"><span class="step-num">2</span><h3>押す</h3><p>「勉強開始」を押すと記録がはじまります。終わったら「終了」を押すだけ。</p></div>
+    <div class="step"><span class="step-num">3</span><h3>積み上がる</h3><p>30分ごとに積み木が1つ。統計やリストで、がんばりを振り返れます。</p></div>
+  </div>
+  <p class="section-note">記録はこの端末のブラウザの中だけに保存され、どこにも送られません。</p>
+</div>
+
 <!-- FEATURES -->
-<div class="section">
-  <h2 class="section-title">特徴</h2>
-  <div class="cards">
+<div class="section" style="padding-top:0">
+  <h2 class="section-title">できること</h2>
+  <div class="cards cards-grid">
 
     <div class="card">
       <div class="card-header">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2.5 1.5"/><path d="M9.5 3h5"/></svg>
         </div>
-        <h3>勉強に特化した設計</h3>
+        <h3>タイマー</h3>
       </div>
+      <p class="card-desc">ボタンを押すだけで記録がはじまります。</p>
       <ul>
-        <li>集中しやすい淡い配色のUI</li>
+        <li>閉じても、開き直せば続きから</li>
         <li>25分 / 5分のフォーカスモード(ポモドーロ)</li>
-        <li>作業を助けるローカル音楽プレイヤー</li>
-        <li>タスクを管理するToDo機能</li>
-        <li>タイマーごとのグループ分け</li>
+        <li>時間を決めて止まる自動停止</li>
+        <li>教科ごとのグループ分け</li>
       </ul>
     </div>
-
     <div class="card">
       <div class="card-header">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M5.5 19.5v-5M12 19.5V9M18.5 19.5v-12"/></svg>
         </div>
-        <h3>振り返りと分析</h3>
+        <h3>統計と積み木</h3>
       </div>
+      <p class="card-desc">がんばった分が、目に見えて積み上がります。</p>
       <ul>
-        <li>棒・折れ線・面グラフで学習時間を可視化</li>
-        <li>連続日数・総セッション数などの統計表示</li>
-        <li>学習データのJSONエクスポート / インポート</li>
-        <li>日本語・英語対応</li>
+        <li>30分ごとに積み木が1つ積み上がる</li>
+        <li>棒・折れ線・面グラフで振り返り</li>
+        <li>連続日数・今週の記録</li>
+        <li>グループごとの色分け</li>
       </ul>
     </div>
-
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.5" cy="6.5" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="17.5" r="1"/></svg>
+        </div>
+        <h3>リスト</h3>
+      </div>
+      <p class="card-desc">これまでの記録を、一覧で見返せます。</p>
+      <ul>
+        <li>グループでの絞り込み・並び替え</li>
+        <li>あとからグループを移動</li>
+        <li>記録のバックアップと引っ越し</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5.5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16.5" r="2.5"/></svg>
+        </div>
+        <h3>音楽</h3>
+      </div>
+      <p class="card-desc">勉強しながら、好きな曲を流せます。</p>
+      <ul>
+        <li>手元の曲でプレイリスト作成</li>
+        <li>小さく置けるミニプレイヤー</li>
+        <li>YouTubeにも対応(設定でON)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.3 12.3l2.5 2.5 5-5.2"/></svg>
+        </div>
+        <h3>ToDo</h3>
+      </div>
+      <p class="card-desc">今日やることを書いて、チェックするだけ。</p>
+      <ul>
+        <li>カレンダーで予定を確認</li>
+        <li>毎日・毎週の繰り返し</li>
+        <li>少しずつ進める段階的な完了</li>
+      </ul>
+    </div>
     <div class="card">
       <div class="card-header">
         <div class="card-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         </div>
-        <h3>自由なカスタマイズ</h3>
+        <h3>カスタマイズ</h3>
       </div>
+      <p class="card-desc">自分が勉強しやすい見た目に。</p>
       <ul>
-        <li>フォント全17種類以上(日本語・英数字別設定)</li>
-        <li>テーマ7色 × ダークモードで最大14パターン</li>
-        <li>機能ごとの細かいON / OFF切り替え</li>
-        <li>グラフ種類・表示期間・表示場所もカスタム</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <h3>便利な独自機能</h3>
-      </div>
-      <ul>
-        <li>カレンダー連携の高度なToDo管理 (Ver.2)</li>
-        <li>自分だけの音楽プレイリスト作成・管理</li>
-        <li>タイムラインバーで一時停止の可視化</li>
-        <li>初心者でも安心のチュートリアル</li>
+        <li>テーマ7色 × ダークモード</li>
+        <li>フォント17種類以上</li>
+        <li>使わない機能は隠せる</li>
       </ul>
     </div>
 
   </div>
+</div>
+
+<!-- お知らせ(changelog.json と blog/posts.json から自動で表示) -->
+<div class="section" style="padding-top:0">
+  <h2 class="section-title">お知らせ</h2>
+  <div class="news-list">
+    <a class="news-item" id="homeNewsUpdate" href="https://about.tsumiki.app/changelog/">
+      <span class="news-kind">アップデート</span>
+      <span class="news-title">更新履歴を見る</span>
+      <svg class="news-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="news-item" id="homeNewsBlog" href="https://about.tsumiki.app/blog/">
+      <span class="news-kind">ブログ</span>
+      <span class="news-title">ブログを見る</span>
+      <svg class="news-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0; padding-bottom:64px">
 
   <!-- LOGO DOWNLOAD SECTION -->
   <div class="logo-download-section">
-    <a href="./brand/" class="hero-btn">
-      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <a href="./brand/" class="pill-link">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       ロゴのダウンロードはこちら
     </a>
   </div>
@@ -142,17 +201,13 @@
       <svg class="link-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       <span>tsumiki.app</span>
     </a>
-    <a href="https://x.com/tsumiki_app" target="_blank" rel="noopener" class="link-badge">
-      <svg viewBox="0 0 256 209" width="21" height="19" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M256 25.45c-9.42 4.177-19.542 7-30.166 8.27 10.845-6.5 19.172-16.793 23.093-29.057a105.183 105.183 0 0 1-33.351 12.745C205.995 7.201 192.346.822 177.239.822c-29.006 0-52.523 23.516-52.523 52.52 0 4.117.465 8.125 1.36 11.97-43.65-2.191-82.35-23.1-108.255-54.876-4.52 7.757-7.11 16.78-7.11 26.404 0 18.222 9.273 34.297 23.365 43.716a52.312 52.312 0 0 1-23.79-6.57c-.003.22-.003.44-.003.661 0 25.447 18.104 46.675 42.13 51.5a52.592 52.592 0 0 1-23.718.9c6.683 20.866 26.08 36.05 49.062 36.475-17.975 14.086-40.622 22.483-65.228 22.483-4.24 0-8.42-.249-12.529-.734 23.243 14.902 50.85 23.597 80.51 23.597 96.607 0 149.434-80.031 149.434-149.435 0-2.278-.05-4.543-.152-6.795A106.748 106.748 0 0 0 256 25.45" fill="#55acee"/></svg>
-      <span>@tsumiki_app</span>
-    </a>
     <a href="https://discord.gg/Sv7gH7JujJ" target="_blank" rel="noopener" class="link-badge">
       <svg viewBox="0 0 256 199" width="21" height="19" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M216.856 16.597A208.502 208.502 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0 0 79.735 175.3a136.413 136.413 0 0 1-21.846-10.632 108.636 108.636 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 0 0 5.355 4.237 136.07 136.07 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36ZM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18Zm85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18Z" fill="#5865F2"/></svg>
       <span>Discord Server</span>
     </a>
-    <a href="https://note.com/kokyujene" target="_blank" rel="noopener" class="link-badge">
-      <svg width="14" height="14" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Note</title><path d="M0 .279c4.623 0 10.953-.235 15.498-.117 6.099.156 8.39 2.813 8.468 9.374.077 3.71 0 14.335 0 14.335h-6.598c0-9.296.04-10.83 0-13.759-.078-2.578-.814-3.807-2.795-4.041-2.097-.235-7.975-.04-7.975-.04v17.84H0Z"/></svg>
-      <span>@kokyujene</span>
+    <a href="mailto:info@tsumiki.app" class="link-badge">
+      <svg class="link-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><polyline points="3 7 12 13 21 7"/></svg>
+      <span>info@tsumiki.app</span>
     </a>
   </div>
 </div>
