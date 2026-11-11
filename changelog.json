@@ -1,5 +1,12 @@
 [
   {
+    "version": "v1.22.0A", "date": "2026.11.11", "type": "minor", "open": true,
+    "summary": "概要: 記録の編集/追加機能",
+    "items": [
+      { "tag": "add", "text": "記録の編集/追加機能の追加" }
+    ]
+  },
+  {
     "version": "v1.22.0", "date": "2026.11.10", "type": "major", "open": true,
     "summary": "概要: カスタム背景, タイマー画面とグラフのリニューアル, 色のカスタム, QRコードでスマホへ移す",
     "items": [
