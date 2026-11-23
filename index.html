@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="タイマーで記録、グラフで可視化、音楽で集中、ToDoで管理。勉強のすべてがこの1ページに。テーマ7色のカスタマイズも。">
 <title>ツミキappとは</title>
+<link rel="canonical" href="https://about.tsumiki.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ツミキapp">
+<meta property="og:title" content="ツミキappとは">
+<meta property="og:description" content="タイマーで記録、グラフで可視化、音楽で集中、ToDoで管理。勉強のすべてがこの1ページに。無料・登録不要・広告なし。">
+<meta property="og:url" content="https://about.tsumiki.app/">
+<meta property="og:image" content="https://tsumiki.app/app-icon-512.png">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="https://tsumiki.app/favicon-v2.ico?v=2" type="image/x-icon">
 <link rel="icon" href="https://tsumiki.app/favicon-v2.png" type="image/png">
 <link rel="shortcut icon" href="https://tsumiki.app/favicon-v2.ico?v=2">
@@ -31,6 +39,8 @@
   </button>
 </div>
 
+<!-- 最初の画面: ナビとヒーローで一画面ぶん -->
+<div class="first-view">
   <!-- NAV -->
   <nav class="top-nav" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:28px 20px 0;">
     <span class="nav-pill active">HOME</span>
@@ -50,11 +60,13 @@
   </a>
   <p class="hero-note">無料・登録不要・広告なし。<a href="#start" class="text-link">はじめかた</a></p>
 </section>
+<a href="#features-start" class="scroll-cue" aria-label="下へスクロール"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a>
+</div>
 
 <hr class="divider">
 
 <!-- STATS -->
-<div class="section" style="padding-bottom:0">
+<div class="section" id="features-start" style="padding-bottom:0">
   <div class="stats">
     <div class="stat-card"><div class="stat-val">0円</div><div class="stat-lbl">広告もなし</div></div>
     <div class="stat-card"><div class="stat-val">登録不要</div><div class="stat-lbl">開くだけで使える</div></div>
@@ -145,9 +157,23 @@
       </div>
       <p class="card-desc">今日やることを書いて、チェックするだけ。</p>
       <ul>
-        <li>カレンダーで予定を確認</li>
-        <li>毎日・毎週の繰り返し</li>
-        <li>少しずつ進める段階的な完了</li>
+        <li>祝日も出るカレンダーで予定を確認</li>
+        <li>毎日・毎週・毎月の繰り返し</li>
+        <li>時刻になったら通知でお知らせ</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M7 10.5h10M7 14h6"/></svg>
+        </div>
+        <h3>暗記カードと教材</h3>
+      </div>
+      <p class="card-desc">覚えることも、進めることも、ここで。</p>
+      <ul>
+        <li>めくって覚える暗記カード</li>
+        <li>毎回ちがう計算問題が出る式のカード</li>
+        <li>参考書がどこまで進んだか・終わる日の目安</li>
       </ul>
     </div>
     <div class="card">
@@ -162,6 +188,20 @@
         <li>テーマ7色 × ダークモード</li>
         <li>フォント17種類以上</li>
         <li>使わない機能は隠せる</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>
+        </div>
+        <h3>スマホでも</h3>
+      </div>
+      <p class="card-desc">PCでもスマホでも、同じように使えます。</p>
+      <ul>
+        <li>ホーム画面に追加すると、アプリのように開ける</li>
+        <li>一度開けば、ネットがなくても使える</li>
+        <li>PCの記録をQRコードでスマホへ移せる</li>
       </ul>
     </div>
 

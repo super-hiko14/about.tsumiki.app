@@ -1,99 +1,254 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ページが見つかりません">
-<title>404 - ページが見つかりません</title>
+<meta name="robots" content="noindex">
+<title>404 - ツミキapp</title>
 <link rel="icon" href="https://tsumiki.app/favicon-v2.ico?v=2" type="image/x-icon">
 <link rel="icon" href="https://tsumiki.app/favicon-v2.png" type="image/png">
-<link rel="shortcut icon" href="https://tsumiki.app/favicon-v2.ico?v=2">
-<link rel="shortcut icon" type="image/webp" href="https://tsumiki.app/favicon-v2.webp?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="https://tsumiki.app/apple-touch-icon-v2.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@14,100;14,200;14,400&family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@500&family=Jost:wght@500&display=swap" rel="stylesheet">
+<!--
+  tsumiki.app と about.tsumiki.app で同じものを置く 404 ページ。
+  ほかのファイルに頼らない(どの深さの URL で出ても崩れない)ように、絵も文字もこの1枚に入れている。
+  「トップへ戻る」は "/" なので、そのドメインのトップ(アプリ / 紹介サイト)へ戻る。
+-->
+<style>
+  :root {
+    --primary: #9db4c8;
+    --primary-hover: #8ba4b8;
+    --bg: #f8f9fb;
+    --text: #323232;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 32px 16px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', 'Zen Kaku Gothic Antique', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .blocks {
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  .home-btn:hover { background: var(--primary-hover); }
+  .home-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--primary); }
+  .home-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+</style>
 </head>
-<body class="light">
-<script>try{if(localStorage.getItem('tsumiki_theme')==='dark')document.body.className='dark';}catch(e){}</script>
+<body>
+<h1 class="sr-only" id="title">ページが見つかりません(404)</h1>
+<canvas class="blocks" id="blocks" role="img" aria-label="404"></canvas>
+<a class="home-btn" id="homeBtn" href="/">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg>
+  <span id="homeLabel">トップへ戻る</span>
+</a>
+<script>
+(function () {
+  // ── 色と言葉: アプリ(tsumiki.app)の設定があればそれに、なければ端末の設定に合わせる ──
+  var THEMES = {
+    blue:   { p: '#9db4c8', ph: '#8ba4b8', pd: '#7a95ab', phd: '#6a859b', bg: '#f8f9fb', bgd: '#17181d' },
+    green:  { p: '#a8c9a8', ph: '#96b996', pd: '#88ab88', phd: '#789b78', bg: '#f7faf7', bgd: '#141815' },
+    purple: { p: '#b8a8c9', ph: '#9f8ff2', pd: '#9a88ab', phd: '#9f8ff2', bg: '#faf7fb', bgd: '#201e27' },
+    orange: { p: '#d9b4a0', ph: '#c9a490', pd: '#b99480', phd: '#a98470', bg: '#faf6f3', bgd: '#161310' },
+    pink:   { p: '#d9a8b4', ph: '#c996a4', pd: '#b98896', phd: '#a97886', bg: '#faf7f8', bgd: '#1b1516' },
+    teal:   { p: '#a0c9c9', ph: '#90b9b9', pd: '#80abab', phd: '#709b9b', bg: '#f7fafa', bgd: '#141b1b' },
+    white:  { p: '#b2b2b2', ph: '#dadada', pd: '#b2b2b2', phd: '#bbbbbb', bg: '#fdfdfd', bgd: '#0a0a0a' }
+  };
+  function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+  var mode = read('mode') || read('tsumiki_theme');
+  var dark = mode === 'dark' || (mode !== 'light' && !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches));
+  var themeName = String(read('theme') || '').trim().toLowerCase();
+  var theme = THEMES[themeName] || THEMES.blue;
+  var root = document.documentElement.style;
+  root.setProperty('--primary', dark ? theme.pd : theme.p);
+  root.setProperty('--primary-hover', dark ? theme.phd : theme.ph);
+  root.setProperty('--bg', dark ? theme.bgd : theme.bg);
+  root.setProperty('--text', dark ? '#e8e8e8' : '#323232');
+  document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
 
-<!-- テーマ切り替え -->
-<div class="top-buttons">
-  <button class="icon-btn" id="themeToggle" aria-label="テーマ切り替え">
-    <!-- moon -->
-    <svg id="moonIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    <!-- sun (hidden) -->
-    <svg id="sunIcon" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-  </button>
-</div>
+  var lang = String(read('app_language') || navigator.language || 'ja').toLowerCase();
+  if (lang.indexOf('ja') !== 0) {
+    document.documentElement.lang = 'en';
+    document.title = '404 - Tsumiki app';
+    document.getElementById('title').textContent = 'Page not found (404)';
+    document.getElementById('homeLabel').textContent = 'Back to top';
+  }
 
-<!-- NAV -->
-<nav class="top-nav" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:28px 20px 0;">
-  <a href="https://about.tsumiki.app/" class="nav-pill">HOME</a>
-  <a href="https://about.tsumiki.app/blog/" class="nav-pill">BLOG</a>
-  <a href="https://about.tsumiki.app/changelog/" class="nav-pill">CHANGELOG</a>
-  <a href="https://about.tsumiki.app/help/" class="nav-pill">HELP</a>
-  <a href="https://tsumiki.app/" class="nav-pill">TSUMIKI.APP</a>
-</nav>
+  // ── 積み木の「404」 ──
+  // 1マス = 積み木1個。アプリの積み木と同じ形(上面が明るく、左の面、右の面の順に暗い)
+  var GLYPHS = {
+    '4': ['#..#', '#..#', '#..#', '####', '...#', '...#', '...#'],
+    '0': ['.##.', '#..#', '#..#', '#..#', '#..#', '#..#', '.##.']
+  };
+  var TEXT = '404';
+  var ROWS = 7, GW = 4, GAP = 1;
+  var u = 6, h = 6;                 // 上面の半分の幅 / 1段の高さ(アプリと同じ)
+  var cols = TEXT.length * GW + (TEXT.length - 1) * GAP;
+  var PAD_X = 4, HEAD = 26, PAD_B = 4;
+  var iw = (cols + 2) * 2 * u + PAD_X * 2;     // 左右に床を1枚ずつ足す
+  var ih = HEAD + (ROWS - 1) * h + u + h + PAD_B;
+  var ox = PAD_X + 3 * u;                       // いちばん左の列の中心
+  var groundY = HEAD + (ROWS - 1) * h + u / 2 + h; // 床の上面の中心の高さ
 
-<!-- HERO -->
-<section class="hero">
-  <div style="font-size:clamp(4rem,16vw,8rem); font-weight:300; line-height:1; margin-bottom:20px; opacity:.15;">404</div>
-  <h1 style="font-size:clamp(1.6rem,4vw,2.2rem); letter-spacing:1px; margin-bottom:16px;">ページが見つかりません</h1>
-  <p class="hero-sub">申し訳ございません。お探しのページは存在しないか、移動した可能性があります。</p>
-  <div style="margin-top:40px;">
-    <a href="https://about.tsumiki.app/" class="hero-btn">
-      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      ホームに戻る
-    </a>
-  </div>
-</section>
+  // 積む順番: 下の段から、左から右へ
+  var cubes = [];
+  for (var level = 0; level < ROWS; level++) {
+    var row = ROWS - 1 - level;
+    for (var d = 0; d < TEXT.length; d++) {
+      var g = GLYPHS[TEXT[d]];
+      for (var x = 0; x < GW; x++) {
+        if (g[row][x] !== '#') continue;
+        cubes.push({ col: d * (GW + GAP) + x, level: level });
+      }
+    }
+  }
+  // 毎回同じ並びになる乱数で、1個ずつ少しだけ色をゆらす
+  var seed = 404;
+  function rand() {
+    seed = (seed + 0x6D2B79F5) | 0;
+    var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
+  cubes.forEach(function (c) { c.tint = rand(); });
 
-<hr class="divider">
+  function hexToHsl(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    var r = (n >> 16 & 255) / 255, g = (n >> 8 & 255) / 255, b = (n & 255) / 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2, s = 0, hh = 0;
+    if (max !== min) {
+      var dd = max - min;
+      s = l > 0.5 ? dd / (2 - max - min) : dd / (max + min);
+      hh = max === r ? (g - b) / dd + (g < b ? 6 : 0) : max === g ? (b - r) / dd + 2 : (r - g) / dd + 4;
+      hh *= 60;
+    }
+    return { h: hh, s: s * 100, l: l * 100 };
+  }
+  var base = hexToHsl(dark ? theme.pd : theme.p);
+  var gray = base.s < 4; // ホワイトのように色みのないテーマは、灰色の濃淡のままにする
 
-<!-- HELP LINKS -->
-<div class="section">
-  <h2 class="section-title">その他のページ</h2>
-  <div style="display:flex; gap:12px; flex-direction:column; max-width:600px; margin:0 auto;">
-    <a href="https://about.tsumiki.app/blog/" class="card" style="text-decoration:none; cursor:pointer; transition:all .2s;">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3>ブログ</h3>
-      </div>
-      <p style="font-size:.9rem; opacity:.7; margin-left:58px; margin-top:-8px;">最新の記事や更新情報をチェック</p>
-    </a>
-    <a href="https://about.tsumiki.app/changelog/" class="card" style="text-decoration:none; cursor:pointer; transition:all .2s;">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </div>
-        <h3>CHANGELOG</h3>
-      </div>
-      <p style="font-size:.9rem; opacity:.7; margin-left:58px; margin-top:-8px;">バージョン履歴と更新内容</p>
-    </a>
-    <a href="https://about.tsumiki.app/help/" class="card" style="text-decoration:none; cursor:pointer; transition:all .2s;">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
-        </div>
-        <h3>ヘルプ</h3>
-      </div>
-      <p style="font-size:.9rem; opacity:.7; margin-left:58px; margin-top:-8px;">よくある質問と解説</p>
-    </a>
-  </div>
-</div>
+  var canvas = document.getElementById('blocks');
+  var ctx = canvas.getContext('2d');
+  canvas.width = iw;
+  canvas.height = ih;
 
-<div class="section" style="padding-top:20px;">
-  <div style="text-align:center;">
-    <a href="https://tsumiki.app/" class="pill-link">
-      <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      ツミキappを使う
-    </a>
-  </div>
-</div>
+  // 拡大は端末の画素の整数倍にして、ドットをくっきり見せる
+  function fit() {
+    var dpr = window.devicePixelRatio || 1;
+    var maxW = Math.min(window.innerWidth - 32, 600);
+    var k = Math.max(1, Math.floor(maxW * dpr / iw));
+    canvas.style.width = (iw * k / dpr) + 'px';
+    canvas.style.height = (ih * k / dpr) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
 
-<script src="./script.js"></script>
+  function poly(pts, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function drawGround() {
+    var gl = dark ? base.l * 0.45 : Math.min(94, base.l + 26);
+    var color = 'hsla(' + base.h + ', ' + (gray ? 0 : base.s * 0.5) + '%, ' + gl + '%, 0.35)';
+    for (var c = -1; c <= cols; c++) {
+      var cx = ox + c * 2 * u;
+      poly([[cx, groundY - u / 2], [cx + u, groundY], [cx, groundY + u / 2], [cx - u, groundY]], color);
+    }
+  }
+
+  function drawCube(cx, cy, tint) {
+    var hue = base.h + (tint - 0.5) * 16;
+    var sat = gray ? 0 : Math.min(85, Math.max(20, base.s * 0.9 + (tint - 0.5) * 8));
+    var lig = Math.min(78, Math.max(26, base.l + (tint - 0.5) * 10));
+    var hs = 'hsl(' + hue + ', ' + sat + '%, ';
+    poly([[cx, cy - u / 2], [cx + u, cy], [cx, cy + u / 2], [cx - u, cy]], hs + Math.min(92, lig + 13) + '%)');
+    poly([[cx - u, cy], [cx, cy + u / 2], [cx, cy + u / 2 + h], [cx - u, cy + h]], hs + lig + '%)');
+    poly([[cx + u, cy], [cx, cy + u / 2], [cx, cy + u / 2 + h], [cx + u, cy + h]], hs + Math.max(14, lig - 15) + '%)');
+    ctx.fillStyle = hs + Math.min(96, lig + 24) + '%)';
+    ctx.fillRect(Math.round(cx) - 2, Math.round(cy) - 1, 2, 1);
+  }
+
+  function cubePos(c) {
+    return { x: ox + c.col * 2 * u, y: groundY - h - c.level * h };
+  }
+
+  var STEP = 55, FALL = 360;
+  function frame(t) {
+    ctx.clearRect(0, 0, iw, ih);
+    drawGround();
+    var busy = false;
+    // 下の段から描くと、上の積み木が下の積み木の上面に正しく重なる
+    for (var i = 0; i < cubes.length; i++) {
+      var c = cubes[i], p = cubePos(c);
+      var local = t - i * STEP;
+      if (local < 0) { busy = true; continue; }
+      var y = p.y;
+      if (local < FALL) {
+        busy = true;
+        var q = local / FALL;
+        var startY = -u - h; // キャンバスの上の外から
+        y = startY + (p.y - startY) * q * q; // だんだん速く落ちる
+      } else if (local < FALL + 90) {
+        busy = true;
+        y = p.y - Math.round(Math.sin((local - FALL) / 90 * Math.PI) * 1.5); // 着地で少しはねる
+      }
+      drawCube(p.x, Math.round(y), c.tint);
+    }
+    return busy;
+  }
+
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    frame(1e9);
+  } else {
+    var t0 = null;
+    var tick = function (now) {
+      if (t0 === null) t0 = now + 250; // ページが出てから少し待って積みはじめる
+      if (frame(Math.max(0, now - t0))) requestAnimationFrame(tick);
+    };
+    frame(0);
+    requestAnimationFrame(tick);
+  }
+})();
+</script>
 </body>
+</html>

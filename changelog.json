@@ -1,5 +1,14 @@
 [
   {
+    "version": "v1.25.0A", "date": "2026.11.23", "type": "major", "open": true,
+    "summary": "概要: カレンダーに祝日, ToDoの日付をカレンダーで直接選べるように",
+    "items": [
+      { "tag": "add", "text": "404ページの追加" },
+      { "tag": "change", "text": "コードの無駄の整理" },
+      { "tag": "fix", "text": "オフラインに余計なものが入る問題の修正" }
+    ]
+  },
+  {
     "version": "v1.25.0", "date": "2026.11.23", "type": "major", "open": true,
     "summary": "概要: カレンダーに祝日, ToDoの日付をカレンダーで直接選べるように",
     "items": [
