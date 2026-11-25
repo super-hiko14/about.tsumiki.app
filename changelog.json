@@ -1,7 +1,14 @@
 [
   {
-    "version": "v1.25.0A", "date": "2026.11.23", "type": "major", "open": true,
-    "summary": "概要: カレンダーに祝日, ToDoの日付をカレンダーで直接選べるように",
+    "version": "v1.25.0B", "date": "2026.11.26", "type": "minor", "open": true,
+    "summary": "概要: フォーカスモードの切り替え表示のバグ",
+    "items": [
+      { "tag": "fix", "text": "フォーカスモード切り替えのテキスト表示のバグの修正" }
+    ]
+  },
+  {
+    "version": "v1.25.0A", "date": "2026.11.23", "type": "minor", "open": true,
+    "summary": "概要: 404ページ, コード整理",
     "items": [
       { "tag": "add", "text": "404ページの追加" },
       { "tag": "change", "text": "コードの無駄の整理" },
